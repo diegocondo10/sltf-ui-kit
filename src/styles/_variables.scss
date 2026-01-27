@@ -1,0 +1,158 @@
+// ============================================
+// Design System Variables
+// These CSS custom properties can be overridden
+// by consumers of the library
+// ============================================
+
+:root {
+  // --------------------------------------------
+  // Colors - Primary
+  // --------------------------------------------
+  --ui-color-primary: #3b82f6;
+  --ui-color-primary-hover: #2563eb;
+  --ui-color-primary-active: #1d4ed8;
+  --ui-color-primary-light: #dbeafe;
+  --ui-color-primary-dark: #1e40af;
+
+  // --------------------------------------------
+  // Colors - Secondary
+  // --------------------------------------------
+  --ui-color-secondary: #64748b;
+  --ui-color-secondary-hover: #475569;
+  --ui-color-secondary-active: #334155;
+  --ui-color-secondary-light: #f1f5f9;
+  --ui-color-secondary-dark: #1e293b;
+
+  // --------------------------------------------
+  // Colors - Success
+  // --------------------------------------------
+  --ui-color-success: #22c55e;
+  --ui-color-success-hover: #16a34a;
+  --ui-color-success-active: #15803d;
+  --ui-color-success-light: #dcfce7;
+  --ui-color-success-dark: #166534;
+
+  // --------------------------------------------
+  // Colors - Warning
+  // --------------------------------------------
+  --ui-color-warning: #f59e0b;
+  --ui-color-warning-hover: #d97706;
+  --ui-color-warning-active: #b45309;
+  --ui-color-warning-light: #fef3c7;
+  --ui-color-warning-dark: #92400e;
+
+  // --------------------------------------------
+  // Colors - Danger
+  // --------------------------------------------
+  --ui-color-danger: #ef4444;
+  --ui-color-danger-hover: #dc2626;
+  --ui-color-danger-active: #b91c1c;
+  --ui-color-danger-light: #fee2e2;
+  --ui-color-danger-dark: #991b1b;
+
+  // --------------------------------------------
+  // Colors - Info
+  // --------------------------------------------
+  --ui-color-info: #06b6d4;
+  --ui-color-info-hover: #0891b2;
+  --ui-color-info-active: #0e7490;
+  --ui-color-info-light: #cffafe;
+  --ui-color-info-dark: #155e75;
+
+  // --------------------------------------------
+  // Colors - Neutral
+  // --------------------------------------------
+  --ui-color-white: #ffffff;
+  --ui-color-black: #000000;
+  --ui-color-gray-50: #f9fafb;
+  --ui-color-gray-100: #f3f4f6;
+  --ui-color-gray-200: #e5e7eb;
+  --ui-color-gray-300: #d1d5db;
+  --ui-color-gray-400: #9ca3af;
+  --ui-color-gray-500: #6b7280;
+  --ui-color-gray-600: #4b5563;
+  --ui-color-gray-700: #374151;
+  --ui-color-gray-800: #1f2937;
+  --ui-color-gray-900: #111827;
+
+  // --------------------------------------------
+  // Typography
+  // --------------------------------------------
+  --ui-font-family: "Inter", system-ui, -apple-system, sans-serif;
+  --ui-font-family-mono: "Fira Code", "Consolas", monospace;
+
+  --ui-font-size-xs: 0.75rem;
+  --ui-font-size-sm: 0.875rem;
+  --ui-font-size-base: 1rem;
+  --ui-font-size-lg: 1.125rem;
+  --ui-font-size-xl: 1.25rem;
+  --ui-font-size-2xl: 1.5rem;
+  --ui-font-size-3xl: 1.875rem;
+  --ui-font-size-4xl: 2.25rem;
+
+  --ui-font-weight-light: 300;
+  --ui-font-weight-normal: 400;
+  --ui-font-weight-medium: 500;
+  --ui-font-weight-semibold: 600;
+  --ui-font-weight-bold: 700;
+
+  --ui-line-height-tight: 1.25;
+  --ui-line-height-normal: 1.5;
+  --ui-line-height-relaxed: 1.75;
+
+  // --------------------------------------------
+  // Spacing
+  // --------------------------------------------
+  --ui-spacing-0: 0;
+  --ui-spacing-1: 0.25rem;
+  --ui-spacing-2: 0.5rem;
+  --ui-spacing-3: 0.75rem;
+  --ui-spacing-4: 1rem;
+  --ui-spacing-5: 1.25rem;
+  --ui-spacing-6: 1.5rem;
+  --ui-spacing-8: 2rem;
+  --ui-spacing-10: 2.5rem;
+  --ui-spacing-12: 3rem;
+  --ui-spacing-16: 4rem;
+  --ui-spacing-20: 5rem;
+  --ui-spacing-24: 6rem;
+
+  // --------------------------------------------
+  // Border Radius
+  // --------------------------------------------
+  --ui-radius-none: 0;
+  --ui-radius-sm: 0.125rem;
+  --ui-radius-base: 0.25rem;
+  --ui-radius-md: 0.375rem;
+  --ui-radius-lg: 0.5rem;
+  --ui-radius-xl: 0.75rem;
+  --ui-radius-2xl: 1rem;
+  --ui-radius-full: 9999px;
+
+  // --------------------------------------------
+  // Shadows
+  // --------------------------------------------
+  --ui-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ui-shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --ui-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --ui-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --ui-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  // --------------------------------------------
+  // Transitions
+  // --------------------------------------------
+  --ui-transition-fast: 150ms ease;
+  --ui-transition-base: 200ms ease;
+  --ui-transition-slow: 300ms ease;
+
+  // --------------------------------------------
+  // Z-Index
+  // --------------------------------------------
+  --ui-z-dropdown: 1000;
+  --ui-z-sticky: 1020;
+  --ui-z-fixed: 1030;
+  --ui-z-modal-backdrop: 1040;
+  --ui-z-modal: 1050;
+  --ui-z-popover: 1060;
+  --ui-z-tooltip: 1070;
+}

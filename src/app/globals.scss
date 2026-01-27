@@ -1,0 +1,25 @@
+// UI Kit Design System (must be first)
+@use "../styles" as *;
+
+// Tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// PrimeReact (CSS files use @import, not @use)
+@import "primereact/resources/themes/lara-light-blue/theme.css";
+@import "primereact/resources/primereact.min.css";
+@import "primeicons/primeicons.css";
+
+// Base Styles
+body {
+  color: var(--ui-color-gray-900);
+  background: var(--ui-color-white);
+  font-family: var(--ui-font-family);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

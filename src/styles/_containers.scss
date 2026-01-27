@@ -1,0 +1,229 @@
+// ============================================
+// Container Styles
+// ============================================
+
+// --------------------------------------------
+// Field Container (Default)
+// --------------------------------------------
+.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-spacing-1);
+  width: 100%;
+
+  // Label
+  &__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ui-spacing-1);
+    font-family: var(--ui-font-family);
+    font-weight: var(--ui-font-weight-medium);
+    color: var(--ui-color-gray-700);
+    transition: color var(--ui-transition-fast);
+  }
+
+  &__required {
+    color: var(--ui-color-danger);
+  }
+
+  // Input wrapper
+  &__input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  // Message wrapper
+  &__message-wrapper {
+    min-height: 1.25rem;
+  }
+
+  &__hint {
+    font-family: var(--ui-font-family);
+    color: var(--ui-color-gray-500);
+  }
+
+  &__error {
+    font-family: var(--ui-font-family);
+    color: var(--ui-color-danger);
+  }
+
+  // Size variants
+  &--sm {
+    .ui-field__label {
+      font-size: var(--ui-font-size-xs);
+    }
+
+    .ui-field__hint,
+    .ui-field__error {
+      font-size: var(--ui-font-size-xs);
+    }
+  }
+
+  &--md {
+    .ui-field__label {
+      font-size: var(--ui-font-size-sm);
+    }
+
+    .ui-field__hint,
+    .ui-field__error {
+      font-size: var(--ui-font-size-xs);
+    }
+  }
+
+  &--lg {
+    .ui-field__label {
+      font-size: var(--ui-font-size-base);
+    }
+
+    .ui-field__hint,
+    .ui-field__error {
+      font-size: var(--ui-font-size-sm);
+    }
+  }
+
+  // State variants
+  &--error {
+    .ui-field__label {
+      color: var(--ui-color-danger);
+    }
+  }
+
+  &--disabled {
+    .ui-field__label {
+      color: var(--ui-color-gray-400);
+    }
+  }
+}
+
+// --------------------------------------------
+// Floating Container
+// --------------------------------------------
+.ui-field-floating {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-spacing-1);
+  width: 100%;
+
+  // Wrapper for input and floating label
+  &__wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  // Floating label
+  &__label {
+    position: absolute;
+    left: var(--ui-spacing-3);
+    font-family: var(--ui-font-family);
+    font-weight: var(--ui-font-weight-normal);
+    color: var(--ui-color-gray-500);
+    pointer-events: none;
+    transition: all var(--ui-transition-fast);
+    transform-origin: left center;
+    background-color: var(--ui-color-white);
+    padding: 0 var(--ui-spacing-1);
+  }
+
+  &__required {
+    color: var(--ui-color-danger);
+  }
+
+  // Message wrapper
+  &__message-wrapper {
+    min-height: 1.25rem;
+  }
+
+  &__hint {
+    font-family: var(--ui-font-family);
+    color: var(--ui-color-gray-500);
+  }
+
+  &__error {
+    font-family: var(--ui-font-family);
+    color: var(--ui-color-danger);
+  }
+
+  // Size variants - Label positioning
+  &--sm {
+    .ui-field-floating__label {
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: var(--ui-font-size-xs);
+    }
+
+    &.ui-field-floating--active .ui-field-floating__label {
+      top: 0;
+      transform: translateY(-50%) scale(0.85);
+    }
+
+    .ui-field-floating__hint,
+    .ui-field-floating__error {
+      font-size: var(--ui-font-size-xs);
+    }
+  }
+
+  &--md {
+    .ui-field-floating__label {
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: var(--ui-font-size-sm);
+    }
+
+    &.ui-field-floating--active .ui-field-floating__label {
+      top: 0;
+      transform: translateY(-50%) scale(0.85);
+    }
+
+    .ui-field-floating__hint,
+    .ui-field-floating__error {
+      font-size: var(--ui-font-size-xs);
+    }
+  }
+
+  &--lg {
+    .ui-field-floating__label {
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: var(--ui-font-size-base);
+    }
+
+    &.ui-field-floating--active .ui-field-floating__label {
+      top: 0;
+      transform: translateY(-50%) scale(0.8);
+    }
+
+    .ui-field-floating__hint,
+    .ui-field-floating__error {
+      font-size: var(--ui-font-size-sm);
+    }
+  }
+
+  // Active state (focused or has value)
+  &--active {
+    .ui-field-floating__label {
+      color: var(--ui-color-gray-600);
+    }
+  }
+
+  // Focused state
+  &--focused {
+    .ui-field-floating__label {
+      color: var(--ui-color-primary);
+    }
+  }
+
+  // Error state
+  &--error {
+    .ui-field-floating__label {
+      color: var(--ui-color-danger);
+    }
+  }
+
+  // Disabled state
+  &--disabled {
+    .ui-field-floating__label {
+      color: var(--ui-color-gray-400);
+      background-color: var(--ui-color-gray-100);
+    }
+  }
+}

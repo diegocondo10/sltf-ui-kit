@@ -1,0 +1,68 @@
+// ============================================
+// SCSS Functions
+// ============================================
+
+// --------------------------------------------
+// Spacing function
+// Returns spacing value from scale
+// --------------------------------------------
+@function spacing($multiplier) {
+  @return calc(var(--ui-spacing-1) * #{$multiplier});
+}
+
+// --------------------------------------------
+// Strip unit from value
+// --------------------------------------------
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// --------------------------------------------
+// Convert px to rem
+// --------------------------------------------
+@function rem($px, $base: 16) {
+  @return #{$px / $base}rem;
+}
+
+// --------------------------------------------
+// Convert px to em
+// --------------------------------------------
+@function em($px, $base: 16) {
+  @return #{$px / $base}em;
+}
+
+// --------------------------------------------
+// Color shade (darken)
+// --------------------------------------------
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// --------------------------------------------
+// Color tint (lighten)
+// --------------------------------------------
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+// --------------------------------------------
+// Z-index management
+// --------------------------------------------
+$z-layers: (
+  "base": 1,
+  "dropdown": 1000,
+  "sticky": 1020,
+  "fixed": 1030,
+  "modal-backdrop": 1040,
+  "modal": 1050,
+  "popover": 1060,
+  "tooltip": 1070,
+);
+
+@function z($layer) {
+  @if map-has-key($z-layers, $layer) {
+    @return map-get($z-layers, $layer);
+  }
+  @warn "No z-index found for '#{$layer}'";
+  @return 1;
+}

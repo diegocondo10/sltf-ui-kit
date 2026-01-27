@@ -1,0 +1,39 @@
+// ============================================
+// UI Kit - Main Styles Entry Point
+// ============================================
+
+// Core
+@import "variables";
+@import "functions";
+@import "mixins";
+
+// ============================================
+// Base Styles
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-font-size-base);
+  line-height: var(--ui-line-height-normal);
+  color: var(--ui-color-gray-900);
+  background-color: var(--ui-color-white);
+}
+
+// ============================================
+// Component Styles
+// ============================================
+@import "containers";
+@import "inputs";
