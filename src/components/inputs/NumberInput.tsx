@@ -35,6 +35,7 @@ export interface NumberInputProps
       | "id"
       | "name"
       | "type"
+      | "size"
     > {
   /**
    * Current numeric value

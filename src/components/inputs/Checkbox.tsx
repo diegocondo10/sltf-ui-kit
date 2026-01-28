@@ -2,7 +2,7 @@
 
 import React, { forwardRef } from "react";
 import { Checkbox as PrimeCheckbox } from "primereact/checkbox";
-import type { CheckboxProps as PrimeCheckboxProps } from "primereact/checkbox";
+import type { CheckboxProps as PrimeCheckboxProps, CheckboxChangeEvent } from "primereact/checkbox";
 import type { ComponentSize, FieldState } from "../types";
 import { cn } from "../../utils/cn";
 
@@ -123,8 +123,8 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
       }
     );
 
-    const handleChange = (e: { checked: boolean }) => {
-      onChange?.(e.checked);
+    const handleChange = (e: CheckboxChangeEvent) => {
+      onChange?.(e.checked ?? false);
     };
 
     const checkboxElement = (

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import ReactDatePicker, { type DatePickerProps as ReactDatePickerProps } from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 import type { BaseInputProps, ComponentSize, FieldState } from "../types";
 import { cn } from "../../utils/cn";
 
@@ -10,13 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 /**
  * Props for DatePicker component
  */
-export interface DatePickerProps
-  extends
-    Omit<BaseInputProps, "placeholder">,
-    Omit<
-      ReactDatePickerProps,
-      "onChange" | "selected" | "disabled" | "readOnly" | "className" | "id" | "name"
-    > {
+export interface DatePickerProps extends Omit<BaseInputProps, "placeholder"> {
   /**
    * Selected date value
    */
@@ -138,7 +132,6 @@ export const DatePicker = forwardRef<ReactDatePicker, DatePickerProps>(function 
     closeOnSelect = true,
     locale,
     className,
-    ...props
   },
   ref,
 ): React.ReactElement {
@@ -173,9 +166,8 @@ export const DatePicker = forwardRef<ReactDatePicker, DatePickerProps>(function 
         wrapperClassName='ui-datepicker__wrapper'
         calendarClassName='ui-datepicker__calendar'
         popperClassName='ui-datepicker__popper'
-        aria-invalid={state === "error"}
+        aria-invalid={state === "error" ? "true" : undefined}
         autoComplete='off'
-        {...props}
       />
     </div>
   );

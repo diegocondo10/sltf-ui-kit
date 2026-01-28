@@ -2,7 +2,7 @@
 
 import React, { forwardRef } from "react";
 import { Button as PrimeButton } from "primereact/button";
-import type { ButtonProps as PrimeButtonProps } from "primereact/button";
+import type { ButtonProps as PrimeButtonProps, Button as PrimeButtonType } from "primereact/button";
 import type { ButtonVariant, ComponentSize } from "../types";
 import { cn } from "../../utils/cn";
 
@@ -90,7 +90,7 @@ export interface ButtonProps
  * </Button>
  * ```
  */
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<PrimeButtonType, ButtonProps>(
   function Button(
     {
       variant = "primary",

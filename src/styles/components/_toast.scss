@@ -1,0 +1,274 @@
+// ============================================
+// Toast Styles
+// ============================================
+// Customizes Sonner toasts using CSS custom properties
+
+// Toast Container
+.ui-toast-container {
+  --normal-bg: var(--ui-color-white);
+  --normal-border: var(--ui-color-gray-200);
+  --normal-text: var(--ui-color-gray-900);
+
+  --success-bg: color-mix(in srgb, var(--ui-color-success) 10%, var(--ui-color-white));
+  --success-border: var(--ui-color-success);
+  --success-text: color-mix(in srgb, var(--ui-color-success) 80%, black);
+
+  --error-bg: color-mix(in srgb, var(--ui-color-danger) 10%, var(--ui-color-white));
+  --error-border: var(--ui-color-danger);
+  --error-text: color-mix(in srgb, var(--ui-color-danger) 80%, black);
+
+  --warning-bg: color-mix(in srgb, var(--ui-color-warning) 10%, var(--ui-color-white));
+  --warning-border: var(--ui-color-warning);
+  --warning-text: color-mix(in srgb, var(--ui-color-warning) 80%, black);
+
+  --info-bg: color-mix(in srgb, var(--ui-color-primary) 10%, var(--ui-color-white));
+  --info-border: var(--ui-color-primary);
+  --info-text: color-mix(in srgb, var(--ui-color-primary) 80%, black);
+}
+
+// Individual Toast
+.ui-toast {
+  font-family: var(--ui-font-family);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-lg);
+  padding: var(--ui-spacing-3) var(--ui-spacing-4);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ui-spacing-3);
+  background-color: var(--ui-color-white);
+  border: 1px solid var(--ui-color-gray-200);
+  min-width: 300px;
+  max-width: 420px;
+
+  // Sonner overrides
+  &[data-sonner-toast] {
+    --border-radius: var(--ui-radius-md);
+  }
+
+  // Title
+  &__title {
+    font-size: var(--ui-font-size-sm);
+    font-weight: var(--ui-font-weight-medium);
+    color: var(--ui-color-gray-900);
+    line-height: var(--ui-line-height-normal);
+  }
+
+  // Description
+  &__description {
+    font-size: var(--ui-font-size-xs);
+    color: var(--ui-color-gray-600);
+    line-height: var(--ui-line-height-normal);
+    margin-top: 2px;
+  }
+
+  // Action Button
+  &__action {
+    font-family: var(--ui-font-family);
+    font-size: var(--ui-font-size-xs);
+    font-weight: var(--ui-font-weight-medium);
+    padding: var(--ui-spacing-1) var(--ui-spacing-2);
+    border-radius: var(--ui-radius-base);
+    background-color: var(--ui-color-primary);
+    color: var(--ui-color-white);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--ui-transition-fast);
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--ui-color-primary) 85%, black);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ui-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  // Cancel Button
+  &__cancel {
+    font-family: var(--ui-font-family);
+    font-size: var(--ui-font-size-xs);
+    font-weight: var(--ui-font-weight-medium);
+    padding: var(--ui-spacing-1) var(--ui-spacing-2);
+    border-radius: var(--ui-radius-base);
+    background-color: transparent;
+    color: var(--ui-color-gray-600);
+    border: 1px solid var(--ui-color-gray-300);
+    cursor: pointer;
+    transition:
+      background-color var(--ui-transition-fast),
+      border-color var(--ui-transition-fast);
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
+      border-color: var(--ui-color-gray-400);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ui-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  // Close Button
+  &__close {
+    position: absolute;
+    top: var(--ui-spacing-2);
+    right: var(--ui-spacing-2);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--ui-color-gray-400);
+    cursor: pointer;
+    border-radius: var(--ui-radius-base);
+    transition:
+      background-color var(--ui-transition-fast),
+      color var(--ui-transition-fast);
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
+      color: var(--ui-color-gray-600);
+    }
+  }
+
+  // ============================================
+  // Toast Variants
+  // ============================================
+
+  // Success
+  &--success {
+    background-color: var(--success-bg);
+    border-color: var(--success-border);
+
+    .ui-toast__title {
+      color: var(--success-text);
+    }
+
+    .ui-toast__action {
+      background-color: var(--ui-color-success);
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--ui-color-success) 85%, black);
+      }
+    }
+  }
+
+  // Error
+  &--error {
+    background-color: var(--error-bg);
+    border-color: var(--error-border);
+
+    .ui-toast__title {
+      color: var(--error-text);
+    }
+
+    .ui-toast__action {
+      background-color: var(--ui-color-danger);
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--ui-color-danger) 85%, black);
+      }
+    }
+  }
+
+  // Warning
+  &--warning {
+    background-color: var(--warning-bg);
+    border-color: var(--warning-border);
+
+    .ui-toast__title {
+      color: var(--warning-text);
+    }
+
+    .ui-toast__action {
+      background-color: var(--ui-color-warning);
+      color: var(--ui-color-gray-900);
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--ui-color-warning) 85%, black);
+      }
+    }
+  }
+
+  // Info
+  &--info {
+    background-color: var(--info-bg);
+    border-color: var(--info-border);
+
+    .ui-toast__title {
+      color: var(--info-text);
+    }
+  }
+
+  // Loading
+  &--loading {
+    .ui-toast__title {
+      color: var(--ui-color-gray-700);
+    }
+  }
+}
+
+// ============================================
+// Dark Theme Support
+// ============================================
+[data-sonner-toaster][data-theme="dark"] {
+  .ui-toast {
+    background-color: var(--ui-color-gray-800);
+    border-color: var(--ui-color-gray-700);
+
+    &__title {
+      color: var(--ui-color-white);
+    }
+
+    &__description {
+      color: var(--ui-color-gray-400);
+    }
+
+    &__cancel {
+      color: var(--ui-color-gray-300);
+      border-color: var(--ui-color-gray-600);
+
+      &:hover {
+        background-color: var(--ui-color-gray-700);
+      }
+    }
+
+    &__close {
+      color: var(--ui-color-gray-500);
+
+      &:hover {
+        background-color: var(--ui-color-gray-700);
+        color: var(--ui-color-gray-300);
+      }
+    }
+
+    // Variant colors in dark mode
+    &--success {
+      background-color: color-mix(in srgb, var(--ui-color-success) 15%, var(--ui-color-gray-800));
+    }
+
+    &--error {
+      background-color: color-mix(in srgb, var(--ui-color-danger) 15%, var(--ui-color-gray-800));
+    }
+
+    &--warning {
+      background-color: color-mix(in srgb, var(--ui-color-warning) 15%, var(--ui-color-gray-800));
+    }
+
+    &--info {
+      background-color: color-mix(in srgb, var(--ui-color-primary) 15%, var(--ui-color-gray-800));
+    }
+  }
+}
+
+// ============================================
+// Animation Overrides (Optional)
+// ============================================
+[data-sonner-toaster] {
+  // Ensure proper z-index
+  z-index: var(--ui-z-toast, 9999);
+}

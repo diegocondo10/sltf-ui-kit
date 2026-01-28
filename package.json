@@ -52,6 +52,7 @@
     "react-hook-form": "^7.71.1",
     "react-number-format": "^5.4.4",
     "react-select": "^5.10.2",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

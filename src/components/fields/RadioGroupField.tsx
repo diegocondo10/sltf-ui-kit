@@ -7,8 +7,9 @@ import {
   type FieldValues,
   type FieldPath,
 } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import { RadioGroup, type RadioGroupProps } from "../inputs/RadioGroup";
+import { FieldError } from "../feedback/FieldError";
+import { FieldHint } from "../feedback/FieldHint";
 import type { ComponentSize, RadioOption } from "../types";
 import { cn } from "../../utils/cn";
 
@@ -86,7 +87,6 @@ export function RadioGroupField<
   const {
     field,
     fieldState: { error, invalid },
-    formState: { errors },
   } = useController({
     name,
     control,
@@ -114,16 +114,8 @@ export function RadioGroupField<
         ref={field.ref}
       />
       <div className="ui-radio-group-field__helper">
-        <ErrorMessage
-          errors={errors}
-          name={name as string}
-          render={({ message }) => (
-            <span className="ui-radio-group-field__error">{message}</span>
-          )}
-        />
-        {!error && hint && (
-          <span className="ui-radio-group-field__hint">{hint}</span>
-        )}
+        <FieldError error={error} size={size} />
+        {!error && hint && <FieldHint size={size}>{hint}</FieldHint>}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { forwardRef, useMemo } from "react";
-import ReactSelect, { type StylesConfig, type GroupBase } from "react-select";
+import ReactSelect, { type StylesConfig, type GroupBase, type SelectInstance } from "react-select";
 import type { BaseInputProps, SelectOption, ComponentSize, FieldState } from "../types";
 import { cn } from "../../utils/cn";
 
@@ -248,7 +248,7 @@ function SelectInner<T = string, IsMulti extends boolean = false>(
     loadingMessage = "Loading...",
     className,
   }: SelectProps<T, IsMulti>,
-  ref: React.ForwardedRef<ReactSelect<SelectOption<T>, IsMulti>>,
+  ref: React.ForwardedRef<SelectInstance<SelectOption<T>, IsMulti, GroupBase<SelectOption<T>>>>,
 ): React.ReactElement {
   const customStyles = useMemo(() => getCustomStyles<T>(size, state), [size, state]);
 
@@ -311,7 +311,7 @@ function SelectInner<T = string, IsMulti extends boolean = false>(
  */
 export const Select = forwardRef(SelectInner) as <T = string, IsMulti extends boolean = false>(
   props: SelectProps<T, IsMulti> & {
-    ref?: React.ForwardedRef<ReactSelect<SelectOption<T>, IsMulti>>;
+    ref?: React.ForwardedRef<SelectInstance<SelectOption<T>, IsMulti, GroupBase<SelectOption<T>>>>;
   },
 ) => React.ReactElement;
 

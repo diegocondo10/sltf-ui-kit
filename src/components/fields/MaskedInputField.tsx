@@ -21,7 +21,7 @@ export interface MaskedInputFieldProps<
 >
   extends
     Omit<UseControllerProps<TFieldValues, TName>, "defaultValue">,
-    Omit<MaskedInputProps, "name" | "value" | "onChange" | "onBlur" | "state"> {
+    Omit<MaskedInputProps, "name" | "value" | "onChange" | "onBlur" | "state" | "variant"> {
   /**
    * Label text for the field
    */

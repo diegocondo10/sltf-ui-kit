@@ -19,7 +19,7 @@ export interface TextFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<UseControllerProps<TFieldValues, TName>, "defaultValue">,
-    Omit<InputTextProps, "name" | "value" | "onChange" | "onBlur" | "state"> {
+    Omit<InputTextProps, "name" | "value" | "onChange" | "onBlur" | "state" | "variant"> {
   /**
    * Label text for the field
    */

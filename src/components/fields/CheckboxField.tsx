@@ -7,8 +7,9 @@ import {
   type FieldValues,
   type FieldPath,
 } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import { Checkbox, type CheckboxProps } from "../inputs/Checkbox";
+import { FieldError } from "../feedback/FieldError";
+import { FieldHint } from "../feedback/FieldHint";
 import type { ComponentSize } from "../types";
 import { cn } from "../../utils/cn";
 
@@ -87,7 +88,6 @@ export function CheckboxField<
   const {
     field,
     fieldState: { error, invalid },
-    formState: { errors },
   } = useController({
     name,
     control,
@@ -114,16 +114,8 @@ export function CheckboxField<
         ref={field.ref}
       />
       <div className="ui-checkbox-field__helper">
-        <ErrorMessage
-          errors={errors}
-          name={name as string}
-          render={({ message }) => (
-            <span className="ui-checkbox-field__error">{message}</span>
-          )}
-        />
-        {!error && hint && (
-          <span className="ui-checkbox-field__hint">{hint}</span>
-        )}
+        <FieldError error={error} size={size} />
+        {!error && hint && <FieldHint size={size}>{hint}</FieldHint>}
       </div>
     </div>
   );

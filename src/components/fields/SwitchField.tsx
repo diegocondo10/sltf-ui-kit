@@ -7,8 +7,9 @@ import {
   type FieldValues,
   type FieldPath,
 } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import { Switch, type SwitchProps } from "../inputs/Switch";
+import { FieldError } from "../feedback/FieldError";
+import { FieldHint } from "../feedback/FieldHint";
 import type { ComponentSize } from "../types";
 import { cn } from "../../utils/cn";
 
@@ -85,7 +86,6 @@ export function SwitchField<
   const {
     field,
     fieldState: { error },
-    formState: { errors },
   } = useController({
     name,
     control,
@@ -108,16 +108,8 @@ export function SwitchField<
         ref={field.ref}
       />
       <div className="ui-switch-field__helper">
-        <ErrorMessage
-          errors={errors}
-          name={name as string}
-          render={({ message }) => (
-            <span className="ui-switch-field__error">{message}</span>
-          )}
-        />
-        {!error && hint && (
-          <span className="ui-switch-field__hint">{hint}</span>
-        )}
+        <FieldError error={error} size={size} />
+        {!error && hint && <FieldHint size={size}>{hint}</FieldHint>}
       </div>
     </div>
   );

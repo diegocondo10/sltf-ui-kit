@@ -19,7 +19,7 @@ export interface TextareaFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<UseControllerProps<TFieldValues, TName>, "defaultValue">,
-    Omit<InputTextareaProps, "name" | "value" | "onChange" | "onBlur" | "state"> {
+    Omit<InputTextareaProps, "name" | "value" | "onChange" | "onBlur" | "state" | "variant"> {
   /**
    * Label text for the field
    */
@@ -94,7 +94,7 @@ export function TextareaField<
   disabled,
   readOnly,
   rows,
-  resize,
+  autoResize,
   className,
   ...inputProps
 }: TextareaFieldProps<TFieldValues, TName>): React.ReactElement {
@@ -135,7 +135,7 @@ export function TextareaField<
       disabled={disabled}
       readOnly={readOnly}
       rows={rows}
-      resize={resize}
+      autoResize={autoResize}
       state={state}
       size={size}
       ref={field.ref}
