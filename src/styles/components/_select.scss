@@ -1,0 +1,277 @@
+// ============================================
+// Select Styles (react-select overrides)
+// ============================================
+
+.ui-select {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: var(--ui-font-family);
+  color: var(--ui-color-gray-900);
+  background-color: transparent;
+  border: none;
+  transition: all var(--ui-transition-fast);
+  cursor: pointer;
+  position: relative;
+
+  // Inner control (visible border and focus styles)
+  .ui-select__control {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--ui-color-white);
+    border: 1px solid var(--ui-color-gray-300);
+    border-radius: var(--ui-radius-md);
+    transition: all var(--ui-transition-fast);
+    cursor: inherit;
+    box-shadow: none;
+
+    &:hover:not(.ui-select--disabled) {
+      border-color: var(--ui-color-gray-400);
+    }
+
+    &:focus-within:not(.ui-select--disabled) {
+      border-color: var(--ui-color-primary);
+      box-shadow: 0 0 0 3px var(--ui-color-primary-light);
+    }
+  }
+
+  // Size variants
+  &--sm {
+    .ui-select__control {
+      min-height: 32px;
+      font-size: var(--ui-font-size-xs);
+    }
+
+    .ui-select__input,
+    .ui-select__label {
+      padding: var(--ui-spacing-1) var(--ui-spacing-2);
+    }
+  }
+
+  &--md {
+    .ui-select__control {
+      min-height: 40px;
+      font-size: var(--ui-font-size-sm);
+    }
+
+    .ui-select__input,
+    .ui-select__label {
+      padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    }
+  }
+
+  &--lg {
+    .ui-select__control {
+      min-height: 48px;
+      font-size: var(--ui-font-size-base);
+    }
+
+    .ui-select__input,
+    .ui-select__label {
+      padding: var(--ui-spacing-3) var(--ui-spacing-4);
+    }
+  }
+
+  // State variants
+  &--error {
+    .ui-select__control {
+      border-color: var(--ui-color-danger);
+
+      &:focus-within {
+        border-color: var(--ui-color-danger);
+        box-shadow: 0 0 0 3px var(--ui-color-danger-light);
+      }
+    }
+  }
+
+  &--success {
+    .ui-select__control {
+      border-color: var(--ui-color-success);
+
+      &:focus-within {
+        border-color: var(--ui-color-success);
+        box-shadow: 0 0 0 3px var(--ui-color-success-light);
+      }
+    }
+  }
+
+  &--warning {
+    .ui-select__control {
+      border-color: var(--ui-color-warning);
+
+      &:focus-within {
+        border-color: var(--ui-color-warning);
+        box-shadow: 0 0 0 3px var(--ui-color-warning-light);
+      }
+    }
+  }
+
+  // Disabled state
+  &--disabled {
+    background-color: var(--ui-color-gray-100);
+    color: var(--ui-color-gray-500);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Input/Label container
+  &__input,
+  &__label {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: inherit;
+  }
+
+  &__label-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--ui-spacing-1);
+    padding: var(--ui-spacing-1);
+  }
+
+  // Trigger/Arrow
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--ui-spacing-3);
+    color: var(--ui-color-gray-400);
+    transition: color var(--ui-transition-fast);
+
+    &:hover {
+      color: var(--ui-color-gray-600);
+    }
+  }
+
+  // Clear button
+  &__clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--ui-spacing-2);
+    color: var(--ui-color-gray-400);
+    cursor: pointer;
+    transition: color var(--ui-transition-fast);
+
+    &:hover {
+      color: var(--ui-color-danger);
+    }
+  }
+
+  // Panel (dropdown)
+  &__panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: var(--ui-z-dropdown);
+    margin-top: var(--ui-spacing-1);
+    background-color: var(--ui-color-white);
+    border-radius: var(--ui-radius-md);
+    box-shadow: var(--ui-shadow-lg);
+    overflow: hidden;
+  }
+
+  // Header (for MultiSelect)
+  &__header {
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    border-bottom: 1px solid var(--ui-color-gray-200);
+  }
+
+  // Filter input
+  &__filter {
+    width: 100%;
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    border: none;
+    border-bottom: 1px solid var(--ui-color-gray-200);
+    font-family: var(--ui-font-family);
+    font-size: var(--ui-font-size-sm);
+    outline: none;
+
+    &:focus {
+      border-bottom-color: var(--ui-color-primary);
+    }
+  }
+
+  // List
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: var(--ui-spacing-1);
+    max-height: 250px;
+    overflow-y: auto;
+  }
+
+  // Item
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    border-radius: var(--ui-radius-base);
+    cursor: pointer;
+    transition: all var(--ui-transition-fast);
+
+    &:hover,
+    &--focused {
+      background-color: var(--ui-color-gray-100);
+    }
+
+    &--selected {
+      background-color: var(--ui-color-primary);
+      color: var(--ui-color-white);
+
+      &:hover {
+        background-color: var(--ui-color-primary-hover);
+      }
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  // Empty message
+  &__empty {
+    padding: var(--ui-spacing-4);
+    text-align: center;
+    color: var(--ui-color-gray-500);
+  }
+
+  // Tokens (MultiSelect chips)
+  &__token {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ui-spacing-1);
+    padding: var(--ui-spacing-1) var(--ui-spacing-2);
+    background-color: var(--ui-color-primary-light);
+    border-radius: var(--ui-radius-base);
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &__token-label {
+    color: var(--ui-color-primary-dark);
+  }
+
+  &__token-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ui-color-primary);
+    transition: color var(--ui-transition-fast);
+
+    &:hover {
+      color: var(--ui-color-danger);
+    }
+  }
+}

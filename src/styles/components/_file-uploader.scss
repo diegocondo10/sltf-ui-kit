@@ -1,0 +1,158 @@
+// ============================================
+// File Uploader Styles
+// ============================================
+
+.ui-file-uploader {
+  border: 2px dashed var(--ui-color-gray-300);
+  border-radius: var(--ui-radius-md);
+  padding: var(--ui-spacing-4);
+  text-align: center;
+  background-color: var(--ui-color-white);
+  transition:
+    border-color var(--ui-transition-fast),
+    background-color var(--ui-transition-fast);
+
+  // Size variants
+  &--sm {
+    padding: var(--ui-spacing-2);
+
+    .ui-file-uploader__icon {
+      font-size: 20px;
+    }
+
+    .ui-file-uploader__text {
+      font-size: var(--ui-font-size-xs);
+    }
+  }
+
+  &--md {
+    padding: var(--ui-spacing-4);
+
+    .ui-file-uploader__icon {
+      font-size: 28px;
+    }
+
+    .ui-file-uploader__text {
+      font-size: var(--ui-font-size-sm);
+    }
+  }
+
+  &--lg {
+    padding: var(--ui-spacing-6);
+
+    .ui-file-uploader__icon {
+      font-size: 36px;
+    }
+
+    .ui-file-uploader__text {
+      font-size: var(--ui-font-size-base);
+    }
+  }
+
+  // State variants
+  &--error {
+    border-color: var(--ui-color-danger);
+    background-color: color-mix(in srgb, var(--ui-color-danger) 5%, transparent);
+  }
+
+  &--success {
+    border-color: var(--ui-color-success);
+    background-color: color-mix(in srgb, var(--ui-color-success) 5%, transparent);
+  }
+
+  &--warning {
+    border-color: var(--ui-color-warning);
+    background-color: color-mix(in srgb, var(--ui-color-warning) 5%, transparent);
+  }
+
+  // Disabled state
+  &--disabled {
+    background-color: var(--ui-color-gray-100);
+    border-color: var(--ui-color-gray-200);
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .ui-file-uploader__drop {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .ui-file-uploader__text {
+      color: var(--ui-color-gray-400);
+    }
+  }
+
+  // Dragging state
+  &--dragging {
+    border-color: var(--ui-color-primary);
+    background-color: color-mix(in srgb, var(--ui-color-primary) 5%, transparent);
+
+    .ui-file-uploader__text {
+      color: var(--ui-color-primary);
+    }
+  }
+
+  &:hover:not(&--disabled) {
+    border-color: var(--ui-color-gray-400);
+  }
+
+  &__drop {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ui-spacing-2);
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  &__text {
+    color: var(--ui-color-gray-700);
+    font-weight: var(--ui-font-weight-medium);
+  }
+
+  &__accept {
+    color: var(--ui-color-gray-500);
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &__list {
+    margin-top: var(--ui-spacing-3);
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    border-radius: var(--ui-radius-base);
+    border: 1px solid var(--ui-color-gray-200);
+    background-color: var(--ui-color-gray-50);
+    margin-bottom: var(--ui-spacing-2);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__name {
+    color: var(--ui-color-gray-900);
+    font-size: var(--ui-font-size-sm);
+    font-weight: var(--ui-font-weight-medium);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__size {
+    color: var(--ui-color-gray-500);
+    font-size: var(--ui-font-size-xs);
+    flex-shrink: 0;
+    margin-left: var(--ui-spacing-2);
+  }
+}

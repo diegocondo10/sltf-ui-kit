@@ -32,3 +32,9 @@ export type { RadioGroupProps } from "./RadioGroup";
 
 export { PasswordInput } from "./PasswordInput";
 export type { PasswordInputProps } from "./PasswordInput";
+
+export { MaskedInput } from "./MaskedInput";
+export type { MaskedInputProps } from "./MaskedInput";
+
+export { FileUploader } from "./FileUploader";
+export type { FileUploaderProps } from "./FileUploader";

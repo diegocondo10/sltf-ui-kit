@@ -1,0 +1,336 @@
+// ============================================
+// Calendar (PrimeReact Calendar)
+// ============================================
+
+.ui-calendar {
+  width: 100%;
+  display: inline-flex;
+  position: relative;
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--ui-spacing-3);
+    background-color: var(--ui-color-gray-100);
+    border: 1px solid var(--ui-color-gray-300);
+    border-left: none;
+    border-radius: 0 var(--ui-radius-md) var(--ui-radius-md) 0;
+    cursor: pointer;
+    transition: all var(--ui-transition-fast);
+
+    &:hover {
+      background-color: var(--ui-color-gray-200);
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: var(--ui-z-dropdown);
+    margin-top: var(--ui-spacing-1);
+    background-color: var(--ui-color-white);
+    border-radius: var(--ui-radius-lg);
+    box-shadow: var(--ui-shadow-lg);
+    padding: var(--ui-spacing-3);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--ui-spacing-3);
+    border-bottom: 1px solid var(--ui-color-gray-200);
+    margin-bottom: var(--ui-spacing-3);
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-spacing-2);
+  }
+
+  &__month-title,
+  &__year-title {
+    font-weight: var(--ui-font-weight-semibold);
+    color: var(--ui-color-gray-900);
+    cursor: pointer;
+    padding: var(--ui-spacing-1) var(--ui-spacing-2);
+    border-radius: var(--ui-radius-base);
+    transition: background-color var(--ui-transition-fast);
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
+    }
+  }
+
+  &__nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: transparent;
+    border-radius: var(--ui-radius-base);
+    cursor: pointer;
+    color: var(--ui-color-gray-500);
+    transition: all var(--ui-transition-fast);
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
+      color: var(--ui-color-gray-700);
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__weekday {
+    padding: var(--ui-spacing-2);
+    text-align: center;
+    font-weight: var(--ui-font-weight-medium);
+    color: var(--ui-color-gray-500);
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &__day {
+    padding: var(--ui-spacing-1);
+    text-align: center;
+  }
+
+  &__day-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--ui-radius-md);
+    cursor: pointer;
+    transition: all var(--ui-transition-fast);
+    font-size: var(--ui-font-size-sm);
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
+    }
+  }
+
+  &__day--today &__day-label {
+    font-weight: var(--ui-font-weight-bold);
+    border: 1px solid var(--ui-color-primary);
+  }
+
+  &__day--selected &__day-label {
+    background-color: var(--ui-color-primary);
+    color: var(--ui-color-white);
+
+    &:hover {
+      background-color: var(--ui-color-primary-hover);
+    }
+  }
+
+  &__day--disabled &__day-label {
+    color: var(--ui-color-gray-300);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ui-spacing-2);
+    padding-top: var(--ui-spacing-3);
+    border-top: 1px solid var(--ui-color-gray-200);
+    margin-top: var(--ui-spacing-3);
+  }
+
+  &__buttonbar {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--ui-spacing-3);
+    border-top: 1px solid var(--ui-color-gray-200);
+    margin-top: var(--ui-spacing-3);
+  }
+
+  &__today-btn,
+  &__clear-btn {
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    border: none;
+    border-radius: var(--ui-radius-base);
+    cursor: pointer;
+    font-family: var(--ui-font-family);
+    font-size: var(--ui-font-size-sm);
+    transition: all var(--ui-transition-fast);
+  }
+
+  &__today-btn {
+    background-color: var(--ui-color-primary);
+    color: var(--ui-color-white);
+
+    &:hover {
+      background-color: var(--ui-color-primary-hover);
+    }
+  }
+
+  &__clear-btn {
+    background-color: var(--ui-color-gray-100);
+    color: var(--ui-color-gray-700);
+
+    &:hover {
+      background-color: var(--ui-color-gray-200);
+    }
+  }
+}
+
+// ============================================
+// DatePicker (react-datepicker)
+// ============================================
+
+.ui-datepicker-wrapper {
+  width: 100%;
+
+  .ui-datepicker__wrapper {
+    width: 100%;
+  }
+}
+
+.ui-datepicker {
+  width: 100%;
+  font-family: var(--ui-font-family);
+  color: var(--ui-color-gray-900);
+  background-color: var(--ui-color-white);
+  border: 1px solid var(--ui-color-gray-300);
+  border-radius: var(--ui-radius-md);
+  transition: all var(--ui-transition-fast);
+  outline: none;
+
+  &::placeholder {
+    color: var(--ui-color-gray-400);
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--ui-color-gray-400);
+  }
+
+  &:focus:not(:disabled) {
+    border-color: var(--ui-color-primary);
+    box-shadow: 0 0 0 3px var(--ui-color-primary-light);
+  }
+
+  // Size variants
+  &--sm {
+    height: 32px;
+    padding: var(--ui-spacing-1) var(--ui-spacing-2);
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &--md {
+    height: 40px;
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    font-size: var(--ui-font-size-sm);
+  }
+
+  &--lg {
+    height: 48px;
+    padding: var(--ui-spacing-3) var(--ui-spacing-4);
+    font-size: var(--ui-font-size-base);
+  }
+
+  // State variants
+  &--error {
+    border-color: var(--ui-color-danger);
+
+    &:focus:not(:disabled) {
+      border-color: var(--ui-color-danger);
+      box-shadow: 0 0 0 3px var(--ui-color-danger-light);
+    }
+  }
+
+  &--success {
+    border-color: var(--ui-color-success);
+
+    &:focus:not(:disabled) {
+      border-color: var(--ui-color-success);
+      box-shadow: 0 0 0 3px var(--ui-color-success-light);
+    }
+  }
+
+  &--warning {
+    border-color: var(--ui-color-warning);
+
+    &:focus:not(:disabled) {
+      border-color: var(--ui-color-warning);
+      box-shadow: 0 0 0 3px var(--ui-color-warning-light);
+    }
+  }
+}
+
+// ============================================
+// React DatePicker Calendar Overrides
+// ============================================
+
+.react-datepicker {
+  font-family: var(--ui-font-family) !important;
+  border: none !important;
+  border-radius: var(--ui-radius-lg) !important;
+  box-shadow: var(--ui-shadow-lg) !important;
+
+  &__header {
+    background-color: var(--ui-color-white) !important;
+    border-bottom: 1px solid var(--ui-color-gray-200) !important;
+    padding-top: var(--ui-spacing-3) !important;
+  }
+
+  &__current-month {
+    font-weight: var(--ui-font-weight-semibold) !important;
+    color: var(--ui-color-gray-900) !important;
+  }
+
+  &__day-name {
+    color: var(--ui-color-gray-500) !important;
+    font-weight: var(--ui-font-weight-medium) !important;
+  }
+
+  &__day {
+    border-radius: var(--ui-radius-md) !important;
+    transition: all var(--ui-transition-fast) !important;
+
+    &:hover {
+      background-color: var(--ui-color-gray-100) !important;
+    }
+
+    &--selected,
+    &--keyboard-selected {
+      background-color: var(--ui-color-primary) !important;
+      color: var(--ui-color-white) !important;
+
+      &:hover {
+        background-color: var(--ui-color-primary-hover) !important;
+      }
+    }
+
+    &--today {
+      font-weight: var(--ui-font-weight-bold) !important;
+    }
+
+    &--disabled {
+      color: var(--ui-color-gray-300) !important;
+    }
+  }
+
+  &__navigation-icon::before {
+    border-color: var(--ui-color-gray-500) !important;
+  }
+
+  &__triangle {
+    display: none !important;
+  }
+}
+
+.react-datepicker-popper {
+  z-index: var(--ui-z-dropdown) !important;
+}

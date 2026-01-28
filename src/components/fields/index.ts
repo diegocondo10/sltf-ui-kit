@@ -26,3 +26,9 @@ export type { SwitchFieldProps } from "./SwitchField";
 
 export { RadioGroupField } from "./RadioGroupField";
 export type { RadioGroupFieldProps } from "./RadioGroupField";
+
+export { MaskedInputField } from "./MaskedInputField";
+export type { MaskedInputFieldProps } from "./MaskedInputField";
+
+export { FileUploaderField } from "./FileUploaderField";
+export type { FileUploaderFieldProps } from "./FileUploaderField";

@@ -1,0 +1,89 @@
+// ============================================
+// Textarea Styles
+// ============================================
+
+.ui-textarea {
+  width: 100%;
+  min-height: 80px;
+  font-family: var(--ui-font-family);
+  color: var(--ui-color-gray-900);
+  background-color: var(--ui-color-white);
+  border: 1px solid var(--ui-color-gray-300);
+  border-radius: var(--ui-radius-md);
+  transition: all var(--ui-transition-fast);
+  outline: none;
+  line-height: var(--ui-line-height-normal);
+  resize: vertical;
+
+  &::placeholder {
+    color: var(--ui-color-gray-400);
+  }
+
+  &:hover:not(:disabled):not([data-p-disabled="true"]) {
+    border-color: var(--ui-color-gray-400);
+  }
+
+  &:focus:not(:disabled):not([data-p-disabled="true"]) {
+    border-color: var(--ui-color-primary);
+    box-shadow: 0 0 0 3px var(--ui-color-primary-light);
+  }
+
+  // Size variants
+  &--sm {
+    padding: var(--ui-spacing-1) var(--ui-spacing-2);
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &--md {
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    font-size: var(--ui-font-size-sm);
+  }
+
+  &--lg {
+    padding: var(--ui-spacing-3) var(--ui-spacing-4);
+    font-size: var(--ui-font-size-base);
+  }
+
+  // State variants
+  &--error {
+    border-color: var(--ui-color-danger);
+
+    &:focus:not(:disabled) {
+      border-color: var(--ui-color-danger);
+      box-shadow: 0 0 0 3px var(--ui-color-danger-light);
+    }
+  }
+
+  &--success {
+    border-color: var(--ui-color-success);
+
+    &:focus:not(:disabled) {
+      border-color: var(--ui-color-success);
+      box-shadow: 0 0 0 3px var(--ui-color-success-light);
+    }
+  }
+
+  &--warning {
+    border-color: var(--ui-color-warning);
+
+    &:focus:not(:disabled) {
+      border-color: var(--ui-color-warning);
+      box-shadow: 0 0 0 3px var(--ui-color-warning-light);
+    }
+  }
+
+  // Disabled state
+  &--disabled,
+  &:disabled,
+  &[data-p-disabled="true"] {
+    background-color: var(--ui-color-gray-100);
+    color: var(--ui-color-gray-500);
+    cursor: not-allowed;
+  }
+
+  // Readonly state
+  &--readonly,
+  &:read-only {
+    background-color: var(--ui-color-gray-50);
+  }
+}

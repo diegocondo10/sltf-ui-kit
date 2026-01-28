@@ -1,0 +1,172 @@
+// ============================================
+// Switch Styles
+// ============================================
+
+.ui-switch-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-spacing-2);
+  cursor: pointer;
+
+  &--label-left {
+    flex-direction: row-reverse;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  // Size variants
+  &.ui-switch--sm {
+    .ui-switch {
+      width: 32px;
+      height: 18px;
+    }
+
+    .ui-switch__slider::before {
+      width: 14px;
+      height: 14px;
+    }
+
+    .ui-switch--checked .ui-switch__slider::before {
+      transform: translateX(14px);
+    }
+
+    .ui-switch__label {
+      font-size: var(--ui-font-size-xs);
+    }
+  }
+
+  &.ui-switch--md {
+    .ui-switch {
+      width: 44px;
+      height: 24px;
+    }
+
+    .ui-switch__slider::before {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ui-switch--checked .ui-switch__slider::before {
+      transform: translateX(20px);
+    }
+
+    .ui-switch__label {
+      font-size: var(--ui-font-size-sm);
+    }
+  }
+
+  &.ui-switch--lg {
+    .ui-switch {
+      width: 56px;
+      height: 30px;
+    }
+
+    .ui-switch__slider::before {
+      width: 26px;
+      height: 26px;
+    }
+
+    .ui-switch--checked .ui-switch__slider::before {
+      transform: translateX(26px);
+    }
+
+    .ui-switch__label {
+      font-size: var(--ui-font-size-base);
+    }
+  }
+}
+
+.ui-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  border-radius: var(--ui-radius-full);
+  background-color: var(--ui-color-gray-300);
+  transition: background-color var(--ui-transition-fast);
+  cursor: pointer;
+
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  &__slider {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--ui-radius-full);
+    transition: background-color var(--ui-transition-fast);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background-color: var(--ui-color-white);
+      border-radius: 50%;
+      box-shadow: var(--ui-shadow-sm);
+      transition: transform var(--ui-transition-fast);
+    }
+  }
+
+  &__label {
+    color: var(--ui-color-gray-700);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  // Hover state
+  &:hover:not(.ui-switch--disabled) {
+    background-color: var(--ui-color-gray-400);
+  }
+
+  // Checked state
+  &--checked {
+    background-color: var(--ui-color-primary);
+
+    &:hover:not(.ui-switch--disabled) {
+      background-color: var(--ui-color-primary-hover);
+    }
+
+    .ui-switch__slider::before {
+      transform: translateX(20px);
+    }
+  }
+
+  // Focus state
+  &:has(&__input:focus-visible) {
+    box-shadow: 0 0 0 3px var(--ui-color-primary-light);
+  }
+}
+
+.ui-switch-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-spacing-1);
+
+  &__helper {
+    padding-left: calc(44px + var(--ui-spacing-2));
+  }
+
+  &__hint {
+    font-size: var(--ui-font-size-xs);
+    color: var(--ui-color-gray-500);
+  }
+
+  &__error {
+    font-size: var(--ui-font-size-xs);
+    color: var(--ui-color-danger);
+  }
+}

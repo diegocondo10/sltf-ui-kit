@@ -1,0 +1,10 @@
+// ============================================
+// Masked Input Styles
+// ============================================
+
+.ui-masked-input {
+  // Inherits all styles from .ui-input
+  &.ui-input {
+    width: 100%;
+  }
+}

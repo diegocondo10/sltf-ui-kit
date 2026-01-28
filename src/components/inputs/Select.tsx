@@ -1,18 +1,17 @@
 "use client";
 
 import React, { forwardRef, useMemo } from "react";
-import ReactSelect, {
-  type StylesConfig,
-  type GroupBase,
-} from "react-select";
+import ReactSelect, { type StylesConfig, type GroupBase } from "react-select";
 import type { BaseInputProps, SelectOption, ComponentSize, FieldState } from "../types";
 import { cn } from "../../utils/cn";
 
 /**
  * Props for Select component
  */
-export interface SelectProps<T = string, IsMulti extends boolean = false>
-  extends Omit<BaseInputProps, "placeholder"> {
+export interface SelectProps<T = string, IsMulti extends boolean = false> extends Omit<
+  BaseInputProps,
+  "placeholder"
+> {
   /**
    * Options to display in the dropdown
    */
@@ -81,7 +80,7 @@ export interface SelectProps<T = string, IsMulti extends boolean = false>
  */
 function getCustomStyles<T>(
   size: ComponentSize,
-  state: FieldState
+  state: FieldState,
 ): StylesConfig<SelectOption<T>, boolean, GroupBase<SelectOption<T>>> {
   const heights: Record<ComponentSize, string> = {
     sm: "32px",
@@ -111,13 +110,9 @@ function getCustomStyles<T>(
       backgroundColor: controlState.isDisabled
         ? "var(--ui-color-gray-100)"
         : "var(--ui-color-white)",
-      borderColor: controlState.isFocused
-        ? "var(--ui-color-primary)"
-        : borderColors[state],
+      borderColor: controlState.isFocused ? "var(--ui-color-primary)" : borderColors[state],
       borderRadius: "var(--ui-radius-md)",
-      boxShadow: controlState.isFocused
-        ? "0 0 0 3px var(--ui-color-primary-light)"
-        : "none",
+      boxShadow: controlState.isFocused ? "0 0 0 3px var(--ui-color-primary-light)" : "none",
       transition: "all var(--ui-transition-fast)",
       "&:hover": {
         borderColor: controlState.isFocused
@@ -181,9 +176,7 @@ function getCustomStyles<T>(
         : optionState.isFocused
           ? "var(--ui-color-gray-100)"
           : "transparent",
-      color: optionState.isSelected
-        ? "var(--ui-color-white)"
-        : "var(--ui-color-gray-900)",
+      color: optionState.isSelected ? "var(--ui-color-white)" : "var(--ui-color-gray-900)",
       cursor: optionState.isDisabled ? "not-allowed" : "pointer",
       opacity: optionState.isDisabled ? 0.5 : 1,
       "&:active": {
@@ -197,9 +190,7 @@ function getCustomStyles<T>(
     }),
     dropdownIndicator: (base, indicatorState) => ({
       ...base,
-      color: indicatorState.isFocused
-        ? "var(--ui-color-primary)"
-        : "var(--ui-color-gray-400)",
+      color: indicatorState.isFocused ? "var(--ui-color-primary)" : "var(--ui-color-gray-400)",
       "&:hover": {
         color: "var(--ui-color-primary)",
       },
@@ -257,34 +248,25 @@ function SelectInner<T = string, IsMulti extends boolean = false>(
     loadingMessage = "Loading...",
     className,
   }: SelectProps<T, IsMulti>,
-  ref: React.ForwardedRef<ReactSelect<SelectOption<T>, IsMulti>>
+  ref: React.ForwardedRef<ReactSelect<SelectOption<T>, IsMulti>>,
 ): React.ReactElement {
-  const customStyles = useMemo(
-    () => getCustomStyles<T>(size, state),
-    [size, state]
-  );
+  const customStyles = useMemo(() => getCustomStyles<T>(size, state), [size, state]);
 
   const selectedOption = useMemo(() => {
     if (value === null || value === undefined) return null;
 
     if (isMulti && Array.isArray(value)) {
-      return options.filter((opt) =>
-        (value as T[]).includes(opt.value)
-      );
+      return options.filter((opt) => (value as T[]).includes(opt.value));
     }
 
     return options.find((opt) => opt.value === value) || null;
   }, [value, options, isMulti]);
 
-  const handleChange = (
-    newValue: SelectOption<T> | readonly SelectOption<T>[] | null
-  ) => {
+  const handleChange = (newValue: SelectOption<T> | readonly SelectOption<T>[] | null) => {
     if (!onChange) return;
 
     if (isMulti) {
-      const values = (newValue as readonly SelectOption<T>[])?.map(
-        (opt) => opt.value
-      ) || [];
+      const values = (newValue as readonly SelectOption<T>[])?.map((opt) => opt.value) || [];
       (onChange as (value: T[]) => void)(values);
     } else {
       const singleValue = (newValue as SelectOption<T>)?.value ?? null;
@@ -311,8 +293,14 @@ function SelectInner<T = string, IsMulti extends boolean = false>(
       noOptionsMessage={() => noOptionsMessage}
       loadingMessage={() => loadingMessage}
       styles={customStyles}
-      className={cn("ui-select", className)}
-      classNamePrefix="ui-select"
+      className={cn(
+        "ui-select",
+        `ui-select--${size}`,
+        `ui-select--${state}`,
+        { "ui-select--disabled": disabled },
+        className,
+      )}
+      classNamePrefix='ui-select'
       aria-invalid={state === "error"}
     />
   );
@@ -321,13 +309,10 @@ function SelectInner<T = string, IsMulti extends boolean = false>(
 /**
  * Forwarded Select component with generic type support
  */
-export const Select = forwardRef(SelectInner) as <
-  T = string,
-  IsMulti extends boolean = false
->(
+export const Select = forwardRef(SelectInner) as <T = string, IsMulti extends boolean = false>(
   props: SelectProps<T, IsMulti> & {
     ref?: React.ForwardedRef<ReactSelect<SelectOption<T>, IsMulti>>;
-  }
+  },
 ) => React.ReactElement;
 
 export default Select;

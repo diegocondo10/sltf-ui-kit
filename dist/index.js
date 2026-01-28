@@ -643,25 +643,18 @@ function SelectInner({
   loadingMessage = "Loading...",
   className
 }, ref) {
-  const customStyles = React13.useMemo(
-    () => getCustomStyles(size, state),
-    [size, state]
-  );
+  const customStyles = React13.useMemo(() => getCustomStyles(size, state), [size, state]);
   const selectedOption = React13.useMemo(() => {
     if (value === null || value === void 0) return null;
     if (isMulti && Array.isArray(value)) {
-      return options.filter(
-        (opt) => value.includes(opt.value)
-      );
+      return options.filter((opt) => value.includes(opt.value));
     }
     return options.find((opt) => opt.value === value) || null;
   }, [value, options, isMulti]);
   const handleChange = (newValue) => {
     if (!onChange) return;
     if (isMulti) {
-      const values = (newValue == null ? void 0 : newValue.map(
-        (opt) => opt.value
-      )) || [];
+      const values = (newValue == null ? void 0 : newValue.map((opt) => opt.value)) || [];
       onChange(values);
     } else {
       const singleValue = (newValue == null ? void 0 : newValue.value) ?? null;
@@ -688,7 +681,13 @@ function SelectInner({
       noOptionsMessage: () => noOptionsMessage,
       loadingMessage: () => loadingMessage,
       styles: customStyles,
-      className: cn("ui-select", className),
+      className: cn(
+        "ui-select",
+        `ui-select--${size}`,
+        `ui-select--${state}`,
+        { "ui-select--disabled": disabled },
+        className
+      ),
       classNamePrefix: "ui-select",
       "aria-invalid": state === "error"
     }
@@ -1172,6 +1171,160 @@ var PasswordInput = React13.forwardRef(
     ));
   }
 );
+function applyMask(value, mask) {
+  if (!mask) return value;
+  const digits = value.replace(/\D/g, "");
+  let i = 0;
+  let out = "";
+  for (const ch of mask) {
+    if (ch === "#") {
+      out += digits[i] ?? "";
+      i += 1;
+      if (i > digits.length) break;
+    } else {
+      out += ch;
+    }
+  }
+  return out;
+}
+var MaskedInput = React13.forwardRef(function MaskedInput2({
+  id,
+  name,
+  mask,
+  value,
+  onChange,
+  placeholder,
+  size = "md",
+  state = "default",
+  disabled = false,
+  readOnly = false,
+  className,
+  ...props
+}, ref) {
+  const handleChange = (e) => {
+    const raw = e.target.value;
+    const formatted = applyMask(raw, mask);
+    const synthetic = {
+      ...e,
+      target: { ...e.target, value: formatted }
+    };
+    onChange == null ? void 0 : onChange(synthetic);
+  };
+  const inputClasses = cn(
+    "ui-input",
+    "ui-masked-input",
+    getInputSizeClass(size),
+    getInputStateClass(state),
+    {
+      "ui-input--disabled": disabled,
+      "ui-input--readonly": readOnly
+    },
+    className
+  );
+  return /* @__PURE__ */ React13__default.default.createElement(
+    inputtext.InputText,
+    {
+      ref,
+      id,
+      name,
+      value,
+      onChange: handleChange,
+      placeholder,
+      disabled,
+      readOnly,
+      "aria-invalid": state === "error",
+      pt: {
+        root: { className: inputClasses }
+      },
+      ...props
+    }
+  );
+});
+var FileUploader = React13.forwardRef(function FileUploader2({
+  multiple = false,
+  accept,
+  maxFiles,
+  onChange,
+  size = "md",
+  state = "default",
+  disabled = false,
+  className,
+  ...props
+}, ref) {
+  const inputRef = React13.useRef(null);
+  const [files, setFiles] = React13.useState([]);
+  const [isDragging, setIsDragging] = React13.useState(false);
+  const handleFiles = (fileList) => {
+    if (!fileList || disabled) return;
+    const arr = Array.from(fileList);
+    let next = arr;
+    if (!multiple) next = arr.slice(0, 1);
+    if (maxFiles) next = next.slice(0, maxFiles);
+    setFiles(next);
+    onChange == null ? void 0 : onChange(next);
+  };
+  const onDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    if (!disabled) {
+      handleFiles(e.dataTransfer.files);
+    }
+  };
+  const onDragOver = (e) => {
+    e.preventDefault();
+    if (!disabled) {
+      e.dataTransfer.dropEffect = "copy";
+      setIsDragging(true);
+    }
+  };
+  const onDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+  const openFileDialog = () => {
+    var _a;
+    if (!disabled) {
+      (_a = inputRef.current) == null ? void 0 : _a.click();
+    }
+  };
+  const uploaderClasses = cn(
+    "ui-file-uploader",
+    `ui-file-uploader--${size}`,
+    {
+      [`ui-file-uploader--${state}`]: state !== "default",
+      "ui-file-uploader--disabled": disabled,
+      "ui-file-uploader--dragging": isDragging
+    },
+    className
+  );
+  return /* @__PURE__ */ React13__default.default.createElement(
+    "div",
+    {
+      ...props,
+      ref,
+      className: uploaderClasses,
+      onDrop,
+      onDragOver,
+      onDragLeave,
+      "aria-disabled": disabled
+    },
+    /* @__PURE__ */ React13__default.default.createElement(
+      "input",
+      {
+        ref: inputRef,
+        type: "file",
+        style: { display: "none" },
+        multiple,
+        accept,
+        disabled,
+        onChange: (e) => handleFiles(e.target.files)
+      }
+    ),
+    /* @__PURE__ */ React13__default.default.createElement("div", { className: "ui-file-uploader__drop", onClick: openFileDialog }, /* @__PURE__ */ React13__default.default.createElement("div", { className: "ui-file-uploader__icon" }, "\u{1F4C1}"), /* @__PURE__ */ React13__default.default.createElement("div", { className: "ui-file-uploader__text" }, disabled ? "Upload disabled" : "Drop files here or click to upload"), accept && /* @__PURE__ */ React13__default.default.createElement("div", { className: "ui-file-uploader__accept" }, "Accepted: ", accept)),
+    files.length > 0 && /* @__PURE__ */ React13__default.default.createElement("ul", { className: "ui-file-uploader__list" }, files.map((f, i) => /* @__PURE__ */ React13__default.default.createElement("li", { className: "ui-file-uploader__item", key: `${f.name}-${i}` }, /* @__PURE__ */ React13__default.default.createElement("span", { className: "ui-file-uploader__name" }, f.name), /* @__PURE__ */ React13__default.default.createElement("span", { className: "ui-file-uploader__size" }, Math.round(f.size / 1024), " KB"))))
+  );
+});
 function TextField({
   // React Hook Form props
   name,
@@ -1845,6 +1998,174 @@ function RadioGroupField({
     }
   ), !error && hint && /* @__PURE__ */ React13__default.default.createElement("span", { className: "ui-radio-group-field__hint" }, hint)));
 }
+function MaskedInputField({
+  // React Hook Form props
+  name,
+  control,
+  rules,
+  shouldUnregister,
+  // Field props
+  label,
+  hint,
+  variant = "default",
+  size = "md",
+  required,
+  id: customId,
+  // Input props
+  mask,
+  placeholder,
+  disabled,
+  readOnly,
+  className,
+  ...inputProps
+}) {
+  const generatedId = React13.useId();
+  const id = customId || `field-${String(name)}-${generatedId}`;
+  const [isFocused, setIsFocused] = React13.useState(false);
+  const {
+    field,
+    fieldState: { error }
+  } = reactHookForm.useController({ name, control, rules, shouldUnregister });
+  const hasValue = Boolean(field.value);
+  const state = error ? "error" : "default";
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => {
+    setIsFocused(false);
+    field.onBlur();
+  };
+  const handleChange = (e) => {
+    field.onChange(e.target.value);
+  };
+  const inputElement = /* @__PURE__ */ React13__default.default.createElement(
+    MaskedInput,
+    {
+      ...inputProps,
+      id,
+      name: field.name,
+      mask,
+      placeholder: variant === "floating" && !isFocused && !hasValue ? "" : placeholder,
+      value: field.value ?? "",
+      onChange: handleChange,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
+      disabled,
+      readOnly,
+      state,
+      size,
+      ref: field.ref
+    }
+  );
+  if (variant === "floating") {
+    return /* @__PURE__ */ React13__default.default.createElement(
+      FloatingContainer,
+      {
+        id,
+        label,
+        hint,
+        error,
+        required,
+        disabled,
+        hasValue,
+        isFocused,
+        size,
+        className
+      },
+      inputElement
+    );
+  }
+  return /* @__PURE__ */ React13__default.default.createElement(
+    FieldContainer,
+    {
+      id,
+      label,
+      hint,
+      error,
+      required,
+      disabled,
+      size,
+      className
+    },
+    inputElement
+  );
+}
+function FileUploaderField({
+  // React Hook Form props
+  name,
+  control,
+  rules,
+  shouldUnregister,
+  // Field props
+  label,
+  hint,
+  variant = "default",
+  size = "md",
+  required,
+  id: customId,
+  // Uploader props
+  multiple,
+  accept,
+  maxFiles,
+  disabled,
+  className,
+  ...uploaderProps
+}) {
+  const generatedId = React13.useId();
+  const id = customId || `field-${String(name)}-${generatedId}`;
+  const {
+    field,
+    fieldState: { error }
+  } = reactHookForm.useController({ name, control, rules, shouldUnregister });
+  const state = error ? "error" : "default";
+  const handleChange = (files) => {
+    field.onChange(multiple ? files : files[0] ?? null);
+  };
+  const valueHasFiles = Array.isArray(field.value) ? field.value.length > 0 : !!field.value;
+  const uploader = /* @__PURE__ */ React13__default.default.createElement(
+    FileUploader,
+    {
+      ...uploaderProps,
+      multiple,
+      accept,
+      maxFiles,
+      onChange: handleChange,
+      size,
+      state,
+      disabled
+    }
+  );
+  if (variant === "floating") {
+    return /* @__PURE__ */ React13__default.default.createElement(
+      FloatingContainer,
+      {
+        id,
+        label,
+        hint,
+        error,
+        required,
+        disabled,
+        hasValue: valueHasFiles,
+        isFocused: false,
+        size,
+        className
+      },
+      uploader
+    );
+  }
+  return /* @__PURE__ */ React13__default.default.createElement(
+    FieldContainer,
+    {
+      id,
+      label,
+      hint,
+      error,
+      required,
+      disabled,
+      size,
+      className
+    },
+    uploader
+  );
+}
 
 exports.Button = Button;
 exports.Checkbox = Checkbox;
@@ -1852,9 +2173,13 @@ exports.CheckboxField = CheckboxField;
 exports.DateField = DateField;
 exports.DatePicker = DatePicker;
 exports.FieldContainer = FieldContainer;
+exports.FileUploader = FileUploader;
+exports.FileUploaderField = FileUploaderField;
 exports.FloatingContainer = FloatingContainer;
 exports.InputText = InputText;
 exports.InputTextarea = InputTextarea;
+exports.MaskedInput = MaskedInput;
+exports.MaskedInputField = MaskedInputField;
 exports.NumberField = NumberField;
 exports.NumberInput = NumberInput;
 exports.PasswordInput = PasswordInput;
