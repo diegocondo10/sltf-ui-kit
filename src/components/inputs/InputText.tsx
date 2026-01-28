@@ -1,14 +1,20 @@
 "use client";
 
 import React, { forwardRef } from "react";
+import { InputText as PrimeInputText } from "primereact/inputtext";
+import type { InputTextProps as PrimeInputTextProps } from "primereact/inputtext";
 import type { BaseInputProps } from "../types";
+import {
+  getInputSizeClass,
+  getInputStateClass,
+} from "../../theme/passthrough";
 
 /**
  * Props for InputText component
  */
 export interface InputTextProps
   extends BaseInputProps,
-    Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+    Omit<PrimeInputTextProps, "size" | "pt"> {
   /**
    * Input type
    * @default "text"
@@ -32,10 +38,10 @@ export interface InputTextProps
 }
 
 /**
- * InputText - Raw text input component
+ * InputText - Text input component using PrimeReact unstyled
  *
  * @description
- * Unstyled text input that uses CSS custom properties for theming.
+ * PrimeReact InputText with CSS custom properties for theming.
  * Supports all standard HTML input attributes.
  *
  * @example
@@ -65,23 +71,10 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
     },
     ref
   ): React.ReactElement {
-    const stateClasses: Record<string, string> = {
-      default: "",
-      error: "ui-input--error",
-      success: "ui-input--success",
-      warning: "ui-input--warning",
-    };
-
-    const sizeClasses: Record<string, string> = {
-      sm: "ui-input--sm",
-      md: "ui-input--md",
-      lg: "ui-input--lg",
-    };
-
     const inputClasses = [
       "ui-input",
-      sizeClasses[size],
-      stateClasses[state],
+      getInputSizeClass(size),
+      getInputStateClass(state),
       disabled && "ui-input--disabled",
       readOnly && "ui-input--readonly",
       className,
@@ -90,7 +83,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
       .join(" ");
 
     return (
-      <input
+      <PrimeInputText
         ref={ref}
         id={id}
         name={name}
@@ -98,8 +91,10 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
-        className={inputClasses}
         aria-invalid={state === "error"}
+        pt={{
+          root: { className: inputClasses },
+        }}
         {...props}
       />
     );

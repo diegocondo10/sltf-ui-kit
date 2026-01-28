@@ -12,8 +12,8 @@ const CURRENCY_CONFIG: Record<
   { symbol: string; position: "prefix" | "suffix" }
 > = {
   USD: { symbol: "$", position: "prefix" },
-  EUR: { symbol: "€", position: "suffix" },
-  GBP: { symbol: "£", position: "prefix" },
+  EUR: { symbol: "\u20AC", position: "suffix" },
+  GBP: { symbol: "\u00A3", position: "prefix" },
   MXN: { symbol: "$", position: "prefix" },
   COP: { symbol: "$", position: "prefix" },
   ARS: { symbol: "$", position: "prefix" },
