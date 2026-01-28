@@ -1,0 +1,155 @@
+// DataTable Component Styles
+// Base styles for the DataTable component using CSS Custom Properties
+
+.ui-datatable {
+  font-family: var(--ui-font-family);
+
+  &__wrapper {
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--ui-color-white);
+  }
+
+  // Header
+  &__thead {
+    background-color: var(--ui-color-gray-50);
+    border-bottom: 2px solid var(--ui-color-gray-200);
+  }
+
+  &__header-row {
+    // Header row styles
+  }
+
+  &__header-cell {
+    padding: var(--ui-spacing-3) var(--ui-spacing-4);
+    text-align: left;
+    font-size: var(--ui-font-size-sm);
+    font-weight: var(--ui-font-weight-semibold);
+    color: var(--ui-color-gray-700);
+    white-space: nowrap;
+
+    &[aria-sort] {
+      cursor: pointer;
+      user-select: none;
+
+      &:hover {
+        background-color: var(--ui-color-gray-100);
+      }
+    }
+  }
+
+  &__sort-icon {
+    margin-left: var(--ui-spacing-2);
+    color: var(--ui-color-gray-400);
+  }
+
+  // Body
+  &__tbody {
+    // Body styles
+  }
+
+  &__body-row {
+    border-bottom: 1px solid var(--ui-color-gray-200);
+    transition: background-color var(--ui-transition-fast);
+
+    &:hover {
+      background-color: var(--ui-color-gray-50);
+    }
+
+    &[aria-selected="true"] {
+      background-color: var(--ui-color-primary-light);
+    }
+  }
+
+  &__column {
+    padding: var(--ui-spacing-3) var(--ui-spacing-4);
+    font-size: var(--ui-font-size-sm);
+    color: var(--ui-color-gray-900);
+  }
+
+  // Footer
+  &__tfoot {
+    background-color: var(--ui-color-gray-50);
+    border-top: 2px solid var(--ui-color-gray-200);
+    font-weight: var(--ui-font-weight-semibold);
+  }
+
+  // Striped rows
+  &--striped {
+    .ui-datatable__body-row:nth-child(even) {
+      background-color: var(--ui-color-gray-50);
+    }
+  }
+
+  // Grid lines
+  &--gridlines {
+    .ui-datatable__header-cell,
+    .ui-datatable__column {
+      border: 1px solid var(--ui-color-gray-200);
+    }
+  }
+
+  // Paginator
+  &__paginator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ui-spacing-3) var(--ui-spacing-4);
+    border-top: 1px solid var(--ui-color-gray-200);
+    background-color: var(--ui-color-white);
+
+    button {
+      padding: var(--ui-spacing-2);
+      border: 1px solid var(--ui-color-gray-300);
+      background-color: var(--ui-color-white);
+      color: var(--ui-color-gray-700);
+      border-radius: var(--ui-radius-base);
+      cursor: pointer;
+      transition: all var(--ui-transition-fast);
+
+      &:hover:not(:disabled) {
+        background-color: var(--ui-color-gray-100);
+        border-color: var(--ui-color-gray-400);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &[aria-current="true"] {
+        background-color: var(--ui-color-primary);
+        border-color: var(--ui-color-primary);
+        color: var(--ui-color-white);
+      }
+    }
+  }
+
+  // Empty message
+  &__empty-message {
+    padding: var(--ui-spacing-8) var(--ui-spacing-4);
+    text-align: center;
+    color: var(--ui-color-gray-500);
+    font-size: var(--ui-font-size-sm);
+  }
+
+  // Row expansion
+  &__row-expansion {
+    background-color: var(--ui-color-gray-50);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .ui-datatable {
+    &__header-cell,
+    &__column {
+      padding: var(--ui-spacing-2) var(--ui-spacing-3);
+      font-size: var(--ui-font-size-xs);
+    }
+  }
+}

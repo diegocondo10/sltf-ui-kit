@@ -1,0 +1,64 @@
+// Card Component Styles
+// Base styles for the Card component using CSS Custom Properties
+
+.ui-card {
+  background-color: var(--ui-color-white);
+  border: 1px solid var(--ui-color-gray-200);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow var(--ui-transition-base);
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  // Card header (for images, icons, etc.)
+  &__header {
+    padding: 0;
+    margin: 0;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  // Card body wrapper
+  &__body {
+    padding: var(--ui-spacing-4);
+  }
+
+  // Card title
+  &__title {
+    font-size: var(--ui-font-size-lg);
+    font-weight: var(--ui-font-weight-semibold);
+    color: var(--ui-color-gray-900);
+    margin: 0 0 var(--ui-spacing-2) 0;
+    line-height: 1.4;
+  }
+
+  // Card subtitle
+  &__subtitle {
+    font-size: var(--ui-font-size-sm);
+    color: var(--ui-color-gray-600);
+    margin: 0 0 var(--ui-spacing-3) 0;
+    line-height: 1.5;
+  }
+
+  // Card content
+  &__content {
+    font-size: var(--ui-font-size-base);
+    color: var(--ui-color-gray-700);
+    line-height: 1.6;
+  }
+
+  // Card footer
+  &__footer {
+    padding: var(--ui-spacing-3) var(--ui-spacing-4);
+    background-color: var(--ui-color-gray-50);
+    border-top: 1px solid var(--ui-color-gray-200);
+    margin: var(--ui-spacing-4) calc(var(--ui-spacing-4) * -1) calc(var(--ui-spacing-4) * -1);
+  }
+}

@@ -1,0 +1,125 @@
+// AutoComplete Component Styles
+// Base styles for the AutoComplete component using CSS Custom Properties
+
+.ui-autocomplete {
+  width: 100%;
+  display: inline-flex;
+  position: relative;
+
+  &__input {
+    width: 100%;
+    font-family: var(--ui-font-family);
+    color: var(--ui-color-gray-900);
+    background-color: var(--ui-color-white);
+    border: 1px solid var(--ui-color-gray-300);
+    border-radius: var(--ui-radius-md);
+    transition: all var(--ui-transition-fast);
+
+    &:focus {
+      border-color: var(--ui-color-primary);
+      box-shadow: 0 0 0 3px var(--ui-color-primary-light);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--ui-color-gray-400);
+    }
+  }
+
+  // Sizes
+  &.ui-input--sm .ui-autocomplete__input {
+    height: 32px;
+    padding: var(--ui-spacing-1) var(--ui-spacing-2);
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &.ui-input--md .ui-autocomplete__input {
+    height: 40px;
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    font-size: var(--ui-font-size-sm);
+  }
+
+  &.ui-input--lg .ui-autocomplete__input {
+    height: 48px;
+    padding: var(--ui-spacing-3) var(--ui-spacing-4);
+    font-size: var(--ui-font-size-base);
+  }
+
+  // States
+  &.ui-input--error .ui-autocomplete__input {
+    border-color: var(--ui-color-danger);
+
+    &:focus {
+      border-color: var(--ui-color-danger);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+  }
+
+  &.ui-input--success .ui-autocomplete__input {
+    border-color: var(--ui-color-success);
+  }
+
+  &.ui-input--warning .ui-autocomplete__input {
+    border-color: var(--ui-color-warning);
+  }
+
+  &--disabled .ui-autocomplete__input {
+    background-color: var(--ui-color-gray-100);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &__dropdown-button {
+    background-color: transparent;
+    border: none;
+    color: var(--ui-color-gray-500);
+    cursor: pointer;
+    padding: 0 var(--ui-spacing-2);
+
+    &:hover {
+      color: var(--ui-color-primary);
+    }
+  }
+
+  // Suggestions panel
+  &__panel {
+    background-color: var(--ui-color-white);
+    border: 1px solid var(--ui-color-gray-200);
+    border-radius: var(--ui-radius-md);
+    box-shadow: var(--ui-shadow-lg);
+    margin-top: var(--ui-spacing-1);
+    z-index: var(--ui-z-dropdown);
+  }
+
+  &__list {
+    padding: var(--ui-spacing-1);
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+  }
+
+  &__item {
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    border-radius: var(--ui-radius-base);
+    cursor: pointer;
+    transition: background-color var(--ui-transition-fast);
+    font-size: var(--ui-font-size-sm);
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
+    }
+
+    &[aria-selected="true"] {
+      background-color: var(--ui-color-primary);
+      color: var(--ui-color-white);
+    }
+  }
+
+  &__empty-message {
+    padding: var(--ui-spacing-3);
+    text-align: center;
+    color: var(--ui-color-gray-500);
+    font-size: var(--ui-font-size-sm);
+  }
+}

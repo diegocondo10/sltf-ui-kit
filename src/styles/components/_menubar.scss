@@ -1,0 +1,132 @@
+// MenuBar Component Styles
+// Base styles for the MenuBar component using CSS Custom Properties
+
+.ui-menubar {
+  background-color: var(--ui-color-white);
+  border: 1px solid var(--ui-color-gray-200);
+  border-radius: var(--ui-radius-md);
+  padding: var(--ui-spacing-2);
+  display: flex;
+  align-items: center;
+  gap: var(--ui-spacing-3);
+
+  &__start {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+  }
+
+  &__menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--ui-spacing-1);
+    flex: 1;
+  }
+
+  &__menuitem {
+    position: relative;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-spacing-2);
+    padding: var(--ui-spacing-2) var(--ui-spacing-3);
+    font-family: var(--ui-font-family);
+    font-size: var(--ui-font-size-sm);
+    font-weight: var(--ui-font-weight-medium);
+    color: var(--ui-color-gray-700);
+    text-decoration: none;
+    border-radius: var(--ui-radius-base);
+    cursor: pointer;
+    transition: all var(--ui-transition-fast);
+    border: none;
+    background: transparent;
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
+      color: var(--ui-color-gray-900);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ui-color-primary);
+      outline-offset: 2px;
+    }
+
+    &[aria-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &__label {
+    flex: 1;
+  }
+
+  &__submenu-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: auto;
+  }
+
+  // Submenu dropdown
+  &__submenu {
+    background-color: var(--ui-color-white);
+    border: 1px solid var(--ui-color-gray-200);
+    border-radius: var(--ui-radius-md);
+    box-shadow: var(--ui-shadow-lg);
+    list-style: none;
+    margin: 0;
+    padding: var(--ui-spacing-1);
+    min-width: 12rem;
+    z-index: var(--ui-z-dropdown);
+
+    .ui-menubar__menuitem {
+      display: block;
+    }
+
+    .ui-menubar__action {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+  &__separator {
+    height: 1px;
+    background-color: var(--ui-color-gray-200);
+    margin: var(--ui-spacing-1) 0;
+  }
+
+  &__end {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .ui-menubar {
+    flex-wrap: wrap;
+
+    &__menu {
+      order: 3;
+      width: 100%;
+      flex-direction: column;
+      margin-top: var(--ui-spacing-2);
+      padding-top: var(--ui-spacing-2);
+      border-top: 1px solid var(--ui-color-gray-200);
+    }
+  }
+}

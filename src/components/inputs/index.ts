@@ -15,6 +15,12 @@ export type { InputTextareaProps } from "./InputTextarea";
 export { Select } from "./Select";
 export type { SelectProps } from "./Select";
 
+export { MultiSelect } from "./MultiSelect";
+export type { MultiSelectProps } from "./MultiSelect";
+
+export { AutoComplete } from "./AutoComplete";
+export type { AutoCompleteProps } from "./AutoComplete";
+
 export { DatePicker } from "./DatePicker";
 export type { DatePickerProps } from "./DatePicker";
 

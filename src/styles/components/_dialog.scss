@@ -1,0 +1,182 @@
+// Dialog Component Styles
+// Base styles for the Dialog component using CSS Custom Properties
+
+// Dialog mask (backdrop)
+.ui-dialog__mask {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--ui-z-modal);
+  transition: opacity var(--ui-transition-base);
+}
+
+// Dialog container
+.ui-dialog {
+  background-color: var(--ui-color-white);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-shadow-2xl);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // Default width
+  width: 500px;
+
+  // Header
+  &__header {
+    padding: var(--ui-spacing-4) var(--ui-spacing-5);
+    border-bottom: 1px solid var(--ui-color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ui-spacing-3);
+    background-color: var(--ui-color-white);
+  }
+
+  &__header-title {
+    font-size: var(--ui-font-size-lg);
+    font-weight: var(--ui-font-weight-semibold);
+    color: var(--ui-color-gray-900);
+    margin: 0;
+    flex: 1;
+  }
+
+  &__header-icons {
+    display: flex;
+    align-items: center;
+    gap: var(--ui-spacing-2);
+  }
+
+  &__close-button {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    color: var(--ui-color-gray-500);
+    border-radius: var(--ui-radius-base);
+    cursor: pointer;
+    transition: all var(--ui-transition-fast);
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
+      color: var(--ui-color-gray-700);
+    }
+
+    &:active {
+      background-color: var(--ui-color-gray-200);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ui-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  // Content
+  &__content {
+    padding: var(--ui-spacing-5);
+    flex: 1;
+    overflow-y: auto;
+    font-size: var(--ui-font-size-base);
+    color: var(--ui-color-gray-700);
+    line-height: 1.6;
+
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: var(--ui-color-gray-100);
+      border-radius: var(--ui-radius-full);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--ui-color-gray-300);
+      border-radius: var(--ui-radius-full);
+
+      &:hover {
+        background-color: var(--ui-color-gray-400);
+      }
+    }
+  }
+
+  // Footer
+  &__footer {
+    padding: var(--ui-spacing-4) var(--ui-spacing-5);
+    border-top: 1px solid var(--ui-color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ui-spacing-2);
+    background-color: var(--ui-color-gray-50);
+  }
+}
+
+// Responsive sizes
+@media (max-width: 640px) {
+  .ui-dialog {
+    width: 95vw;
+    max-width: none;
+
+    &__header,
+    &__content,
+    &__footer {
+      padding: var(--ui-spacing-3);
+    }
+  }
+}
+
+// Animation classes (PrimeReact applies these)
+.p-dialog-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.p-dialog-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.p-dialog-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.p-dialog-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 100ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+// Mask animation
+.p-dialog-mask-enter {
+  opacity: 0;
+}
+
+.p-dialog-mask-enter-active {
+  opacity: 1;
+  transition: opacity 150ms ease-out;
+}
+
+.p-dialog-mask-exit {
+  opacity: 1;
+}
+
+.p-dialog-mask-exit-active {
+  opacity: 0;
+  transition: opacity 100ms ease-in;
+}

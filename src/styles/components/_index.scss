@@ -9,6 +9,8 @@
 
 // Advanced inputs
 @import "select";
+@import "multiselect";
+@import "autocomplete";
 @import "masked-input";
 @import "number-input";
 @import "password-input";
@@ -22,8 +24,20 @@
 @import "switch";
 @import "radio-group";
 
-// Feedback
+// Feedback & Overlays
 @import "feedback";
+@import "dialog";
 
 // Toast notifications
 @import "toast";
+
+// Layout
+@import "card";
+@import "sidebar";
+
+// Navigation
+@import "tabs";
+@import "menubar";
+
+// Data display
+@import "datatable";

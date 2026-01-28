@@ -12,6 +12,12 @@ export type { TextareaFieldProps } from "./TextareaField";
 export { SelectField } from "./SelectField";
 export type { SelectFieldProps } from "./SelectField";
 
+export { MultiSelectField } from "./MultiSelectField";
+export type { MultiSelectFieldProps } from "./MultiSelectField";
+
+export { AutoCompleteField } from "./AutoCompleteField";
+export type { AutoCompleteFieldProps } from "./AutoCompleteField";
+
 export { DateField } from "./DateField";
 export type { DateFieldProps } from "./DateField";
 
