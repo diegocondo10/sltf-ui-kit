@@ -3,6 +3,8 @@
 import React from "react";
 import type { BaseContainerProps } from "../types";
 import { cn } from "../../utils/cn";
+import { FieldError } from "../feedback/FieldError";
+import { FieldHint } from "../feedback/FieldHint";
 
 /**
  * Props for FieldContainer component
@@ -21,7 +23,7 @@ export interface FieldContainerProps extends BaseContainerProps {
  * Provides consistent layout for form fields with:
  * - Label positioning above input
  * - Required indicator
- * - Error/hint message display
+ * - Error/hint message display using FieldError and FieldHint components
  * - Accessibility attributes
  *
  * @example
@@ -72,17 +74,13 @@ export function FieldContainer({
 
       <div className="ui-field__input-wrapper">{children}</div>
 
-      {(errorMessage || hint) && (
-        <div className="ui-field__message-wrapper">
-          {errorMessage ? (
-            <span className="ui-field__error" role="alert" aria-live="polite">
-              {errorMessage}
-            </span>
-          ) : hint ? (
-            <span className="ui-field__hint">{hint}</span>
-          ) : null}
-        </div>
-      )}
+      <div className="ui-field__message-wrapper">
+        {hasError ? (
+          <FieldError error={error} size={size} />
+        ) : hint ? (
+          <FieldHint size={size}>{hint}</FieldHint>
+        ) : null}
+      </div>
     </div>
   );
 }

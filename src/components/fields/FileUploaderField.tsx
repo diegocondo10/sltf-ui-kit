@@ -9,7 +9,11 @@ import {
 } from "react-hook-form";
 import { FieldContainer } from "../containers/FieldContainer";
 import { FloatingContainer } from "../containers/FloatingContainer";
-import { FileUploader, type FileUploaderProps } from "../inputs/FileUploader";
+import {
+  FileUploader,
+  type FileUploaderProps,
+  type FileError,
+} from "../inputs/FileUploader";
 import type { ContainerVariant, ComponentSize } from "../types";
 
 /**
@@ -55,6 +59,12 @@ export interface FileUploaderFieldProps<
    * Auto-generated if not provided
    */
   id?: string;
+
+  /**
+   * Callback fired when file validation fails
+   * Receives array of FileError objects
+   */
+  onValidationError?: (errors: FileError[]) => void;
 }
 
 /**
@@ -64,15 +74,18 @@ export interface FileUploaderFieldProps<
  * Combines FieldContainer/FloatingContainer with FileUploader and useController.
  * Automatically handles validation states and error display.
  * Stores File[] for multiple or File | null for single upload.
+ * Supports file size/type validation with error callbacks.
  *
  * @example
  * ```tsx
- * // Single file upload
+ * // Single file upload with preview
  * <FileUploaderField
  *   name="avatar"
  *   control={control}
  *   label="Profile Picture"
  *   accept="image/*"
+ *   maxSize={5 * 1024 * 1024}
+ *   showPreview
  *   rules={{ required: "Please upload an image" }}
  * />
  *
@@ -83,7 +96,9 @@ export interface FileUploaderFieldProps<
  *   label="Documents"
  *   multiple
  *   maxFiles={5}
+ *   maxSize={10 * 1024 * 1024}
  *   variant="floating"
+ *   onValidationError={(errors) => console.log(errors)}
  * />
  * ```
  */
@@ -107,6 +122,13 @@ export function FileUploaderField<
   multiple,
   accept,
   maxFiles,
+  maxSize,
+  showPreview,
+  showFileList,
+  dropText,
+  disabledText,
+  onRemove,
+  onValidationError,
   disabled,
   className,
   ...uploaderProps
@@ -126,6 +148,10 @@ export function FileUploaderField<
     field.onChange(multiple ? files : (files[0] ?? null));
   };
 
+  const handleError = (errors: FileError[]) => {
+    onValidationError?.(errors);
+  };
+
   const valueHasFiles = Array.isArray(field.value) ? field.value.length > 0 : !!field.value;
 
   const uploader = (
@@ -134,7 +160,14 @@ export function FileUploaderField<
       multiple={multiple}
       accept={accept}
       maxFiles={maxFiles}
+      maxSize={maxSize}
+      showPreview={showPreview}
+      showFileList={showFileList}
+      dropText={dropText}
+      disabledText={disabledText}
       onChange={handleChange}
+      onRemove={onRemove}
+      onError={handleError}
       size={size}
       state={state}
       disabled={disabled}

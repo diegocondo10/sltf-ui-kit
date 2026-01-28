@@ -138,6 +138,31 @@ export function getButtonSizeClass(size: ComponentSize = "md"): string {
 }
 
 /**
+ * Get file uploader size class
+ */
+export function getFileUploaderSizeClass(size: ComponentSize = "md"): string {
+  const sizeClasses: Record<ComponentSize, string> = {
+    sm: "ui-file-uploader--sm",
+    md: "ui-file-uploader--md",
+    lg: "ui-file-uploader--lg",
+  };
+  return sizeClasses[size];
+}
+
+/**
+ * Get file uploader state class
+ */
+export function getFileUploaderStateClass(state: FieldState = "default"): string {
+  const stateClasses: Record<FieldState, string> = {
+    default: "",
+    error: "ui-file-uploader--error",
+    success: "ui-file-uploader--success",
+    warning: "ui-file-uploader--warning",
+  };
+  return stateClasses[state];
+}
+
+/**
  * Global PassThrough configuration for PrimeReact
  * This provides base styling for InputText and InputTextarea
  */

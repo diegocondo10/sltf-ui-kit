@@ -1,0 +1,49 @@
+// ============================================
+// Feedback Component Styles
+// ============================================
+
+// --------------------------------------------
+// Field Error
+// --------------------------------------------
+.ui-field-error {
+  display: inline-block;
+  font-family: var(--ui-font-family);
+  color: var(--ui-color-danger);
+  line-height: var(--ui-line-height-normal);
+
+  // Size variants
+  &--sm {
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &--md {
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &--lg {
+    font-size: var(--ui-font-size-sm);
+  }
+}
+
+// --------------------------------------------
+// Field Hint
+// --------------------------------------------
+.ui-field-hint {
+  display: inline-block;
+  font-family: var(--ui-font-family);
+  color: var(--ui-color-gray-500);
+  line-height: var(--ui-line-height-normal);
+
+  // Size variants
+  &--sm {
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &--md {
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &--lg {
+    font-size: var(--ui-font-size-sm);
+  }
+}

@@ -3,6 +3,8 @@
 import React from "react";
 import type { FloatingContainerProps } from "../types";
 import { cn } from "../../utils/cn";
+import { FieldError } from "../feedback/FieldError";
+import { FieldHint } from "../feedback/FieldHint";
 
 /**
  * Props for FloatingContainer component
@@ -22,7 +24,7 @@ export interface FloatingContainerComponentProps extends FloatingContainerProps 
  * - Label starts inside the input area
  * - Label floats up when input is focused or has value
  * - Smooth transition animations
- * - Error/hint message display
+ * - Error/hint message display using FieldError and FieldHint components
  *
  * @example
  * ```tsx
@@ -80,21 +82,13 @@ export function FloatingContainer({
         )}
       </div>
 
-      {(errorMessage || hint) && (
-        <div className="ui-field-floating__message-wrapper">
-          {errorMessage ? (
-            <span
-              className="ui-field-floating__error"
-              role="alert"
-              aria-live="polite"
-            >
-              {errorMessage}
-            </span>
-          ) : hint ? (
-            <span className="ui-field-floating__hint">{hint}</span>
-          ) : null}
-        </div>
-      )}
+      <div className="ui-field-floating__message-wrapper">
+        {hasError ? (
+          <FieldError error={error} size={size} />
+        ) : hint ? (
+          <FieldHint size={size}>{hint}</FieldHint>
+        ) : null}
+      </div>
     </div>
   );
 }
