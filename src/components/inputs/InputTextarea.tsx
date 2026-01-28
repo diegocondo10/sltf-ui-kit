@@ -8,6 +8,7 @@ import {
   getTextareaSizeClass,
   getTextareaStateClass,
 } from "../../theme/passthrough";
+import { cn } from "../../utils/cn";
 
 /**
  * Props for InputTextarea component
@@ -74,21 +75,21 @@ export const InputTextarea = forwardRef<HTMLTextAreaElement, InputTextareaProps>
       size = "md",
       rows = 3,
       autoResize = false,
-      className = "",
+      className,
       ...props
     },
     ref
   ): React.ReactElement {
-    const textareaClasses = [
+    const textareaClasses = cn(
       "ui-textarea",
       getTextareaSizeClass(size),
       getTextareaStateClass(state),
-      disabled && "ui-textarea--disabled",
-      readOnly && "ui-textarea--readonly",
-      className,
-    ]
-      .filter(Boolean)
-      .join(" ");
+      {
+        "ui-textarea--disabled": disabled,
+        "ui-textarea--readonly": readOnly,
+      },
+      className
+    );
 
     return (
       <PrimeInputTextarea

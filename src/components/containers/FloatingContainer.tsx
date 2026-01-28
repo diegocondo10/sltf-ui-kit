@@ -2,6 +2,7 @@
 
 import React from "react";
 import type { FloatingContainerProps } from "../types";
+import { cn } from "../../utils/cn";
 
 /**
  * Props for FloatingContainer component
@@ -46,7 +47,7 @@ export function FloatingContainer({
   disabled = false,
   hasValue = false,
   isFocused = false,
-  className = "",
+  className,
   size = "md",
   children,
 }: FloatingContainerComponentProps): React.ReactElement {
@@ -54,23 +55,17 @@ export function FloatingContainer({
   const hasError = Boolean(errorMessage);
   const isFloating = isFocused || hasValue;
 
-  const sizeClasses: Record<string, string> = {
-    sm: "ui-field-floating--sm",
-    md: "ui-field-floating--md",
-    lg: "ui-field-floating--lg",
-  };
-
-  const containerClasses = [
+  const containerClasses = cn(
     "ui-field-floating",
-    sizeClasses[size],
-    isFloating && "ui-field-floating--active",
-    isFocused && "ui-field-floating--focused",
-    hasError && "ui-field-floating--error",
-    disabled && "ui-field-floating--disabled",
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+    `ui-field-floating--${size}`,
+    {
+      "ui-field-floating--active": isFloating,
+      "ui-field-floating--focused": isFocused,
+      "ui-field-floating--error": hasError,
+      "ui-field-floating--disabled": disabled,
+    },
+    className
+  );
 
   return (
     <div className={containerClasses}>

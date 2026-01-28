@@ -159,3 +159,28 @@ export type NumberFormatType = "decimal" | "currency" | "percentage" | "integer"
  * Currency codes supported
  */
 export type CurrencyCode = "USD" | "EUR" | "GBP" | "MXN" | "COP" | "ARS";
+
+/**
+ * Button visual variants
+ */
+export type ButtonVariant = "primary" | "secondary" | "danger" | "warning" | "success" | "ghost" | "link";
+
+/**
+ * Option type for radio group components
+ */
+export interface RadioOption<T = string> {
+  /**
+   * Display label for the option
+   */
+  label: string;
+
+  /**
+   * Value of the option
+   */
+  value: T;
+
+  /**
+   * Whether the option is disabled
+   */
+  disabled?: boolean;
+}

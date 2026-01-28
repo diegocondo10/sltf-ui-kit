@@ -8,6 +8,7 @@ import {
   getInputSizeClass,
   getInputStateClass,
 } from "../../theme/passthrough";
+import { cn } from "../../utils/cn";
 
 /**
  * Props for InputText component
@@ -66,21 +67,21 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
       readOnly = false,
       state = "default",
       size = "md",
-      className = "",
+      className,
       ...props
     },
     ref
   ): React.ReactElement {
-    const inputClasses = [
+    const inputClasses = cn(
       "ui-input",
       getInputSizeClass(size),
       getInputStateClass(state),
-      disabled && "ui-input--disabled",
-      readOnly && "ui-input--readonly",
-      className,
-    ]
-      .filter(Boolean)
-      .join(" ");
+      {
+        "ui-input--disabled": disabled,
+        "ui-input--readonly": readOnly,
+      },
+      className
+    );
 
     return (
       <PrimeInputText

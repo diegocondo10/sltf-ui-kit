@@ -3,6 +3,7 @@
 import React, { forwardRef } from "react";
 import { NumericFormat, type NumericFormatProps } from "react-number-format";
 import type { BaseInputProps, NumberFormatType, CurrencyCode } from "../types";
+import { cn } from "../../utils/cn";
 
 /**
  * Currency configuration
@@ -164,35 +165,22 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       min,
       max,
       allowNegative = true,
-      className = "",
+      className,
       ...props
     },
     ref
   ): React.ReactElement {
-    const stateClasses: Record<string, string> = {
-      default: "",
-      error: "ui-input--error",
-      success: "ui-input--success",
-      warning: "ui-input--warning",
-    };
-
-    const sizeClasses: Record<string, string> = {
-      sm: "ui-input--sm",
-      md: "ui-input--md",
-      lg: "ui-input--lg",
-    };
-
-    const inputClasses = [
+    const inputClasses = cn(
       "ui-input",
       "ui-number-input",
-      sizeClasses[size],
-      stateClasses[state],
-      disabled && "ui-input--disabled",
-      readOnly && "ui-input--readonly",
-      className,
-    ]
-      .filter(Boolean)
-      .join(" ");
+      `ui-input--${size}`,
+      state !== "default" && `ui-input--${state}`,
+      {
+        "ui-input--disabled": disabled,
+        "ui-input--readonly": readOnly,
+      },
+      className
+    );
 
     // Determine prefix/suffix based on format type
     let prefix = "";

@@ -2,6 +2,7 @@
 
 import React from "react";
 import type { BaseContainerProps } from "../types";
+import { cn } from "../../utils/cn";
 
 /**
  * Props for FieldContainer component
@@ -43,28 +44,22 @@ export function FieldContainer({
   error,
   required = false,
   disabled = false,
-  className = "",
+  className,
   size = "md",
   children,
 }: FieldContainerProps): React.ReactElement {
   const errorMessage = typeof error === "string" ? error : error?.message;
   const hasError = Boolean(errorMessage);
 
-  const sizeClasses: Record<string, string> = {
-    sm: "ui-field--sm",
-    md: "ui-field--md",
-    lg: "ui-field--lg",
-  };
-
-  const containerClasses = [
+  const containerClasses = cn(
     "ui-field",
-    sizeClasses[size],
-    hasError && "ui-field--error",
-    disabled && "ui-field--disabled",
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+    `ui-field--${size}`,
+    {
+      "ui-field--error": hasError,
+      "ui-field--disabled": disabled,
+    },
+    className
+  );
 
   return (
     <div className={containerClasses}>

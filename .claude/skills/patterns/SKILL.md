@@ -6,7 +6,55 @@ Este documento define las buenas prácticas y convenciones para el desarrollo de
 
 ---
 
-## 1. Cuándo usar Tailwind CSS vs SCSS
+## 1. Librerías de Utilidad
+
+### cn() - Class Name Utility
+
+Usa `cn()` (de `src/utils/cn.ts`) para construir clases CSS. Combina `clsx` + `tailwind-merge`.
+
+```tsx
+import { cn } from "../../utils/cn";
+
+// ❌ Incorrecto: Arrays manuales
+const classes = [
+  "ui-button",
+  variant === "primary" && "ui-button--primary",
+  disabled && "ui-button--disabled",
+  className,
+].filter(Boolean).join(" ");
+
+// ✅ Correcto: Usar cn()
+const classes = cn(
+  "ui-button",
+  `ui-button--${variant}`,
+  {
+    "ui-button--disabled": disabled,
+    "ui-button--loading": loading,
+  },
+  className
+);
+```
+
+### @hookform/error-message
+
+Usa `ErrorMessage` para mostrar errores de validación en Fields.
+
+```tsx
+import { ErrorMessage } from "@hookform/error-message";
+
+// En el render:
+<ErrorMessage
+  errors={errors}
+  name={name as string}
+  render={({ message }) => (
+    <span className="ui-field__error">{message}</span>
+  )}
+/>
+```
+
+---
+
+## 2. Cuándo usar Tailwind CSS vs SCSS
 
 ### Usar Tailwind CSS para:
 
@@ -30,7 +78,7 @@ Este documento define las buenas prácticas y convenciones para el desarrollo de
 
 | Caso de uso | Ejemplo |
 |-------------|---------|
-| **Componentes del UI Kit** | `.ui-input`, `.ui-field` |
+| **Componentes del UI Kit** | `.ui-input`, `.ui-field`, `.ui-button` |
 | **Estados complejos** | Error, success, warning, disabled |
 | **CSS Custom Properties** | `var(--ui-color-primary)` |
 | **Theming/Rebranding** | Variables que se sobrescriben |
@@ -57,12 +105,12 @@ Este documento define las buenas prácticas y convenciones para el desarrollo de
 
 ---
 
-## 2. Arquitectura de Componentes
+## 3. Arquitectura de Componentes
 
 ### 3 Capas
 
 ```
-FIELDS      → Integración con React Hook Form
+FIELDS      → Integración con React Hook Form + ErrorMessage
 CONTAINERS  → Layout y presentación (label, error, hint)
 INPUTS      → Componentes raw/unstyled
 ```
@@ -71,14 +119,136 @@ INPUTS      → Componentes raw/unstyled
 
 | Tipo | Ejemplo |
 |------|---------|
-| Input raw | `InputText`, `Select`, `DatePicker` |
+| Input raw | `InputText`, `Select`, `DatePicker`, `Button`, `Checkbox`, `Switch` |
 | Container | `FieldContainer`, `FloatingContainer` |
-| Field (RHF) | `TextField`, `SelectField` |
-| CSS classes | `ui-input`, `ui-field` |
+| Field (RHF) | `TextField`, `SelectField`, `CheckboxField`, `SwitchField` |
+| CSS classes | `ui-input`, `ui-field`, `ui-button`, `ui-checkbox` |
 
 ---
 
-## 3. Storybook
+## 4. Patrón de Componente Input
+
+```tsx
+"use client";
+
+import React, { forwardRef } from "react";
+import type { ComponentSize, FieldState } from "../types";
+import { cn } from "../../utils/cn";
+
+export interface MyComponentProps {
+  size?: ComponentSize;
+  state?: FieldState;
+  disabled?: boolean;
+  className?: string;
+}
+
+export const MyComponent = forwardRef<HTMLElement, MyComponentProps>(
+  function MyComponent(
+    {
+      size = "md",
+      state = "default",
+      disabled = false,
+      className,
+      ...props
+    },
+    ref
+  ) {
+    const classes = cn(
+      "ui-mycomponent",
+      `ui-mycomponent--${size}`,
+      state !== "default" && `ui-mycomponent--${state}`,
+      { "ui-mycomponent--disabled": disabled },
+      className
+    );
+
+    return <div ref={ref} className={classes} {...props} />;
+  }
+);
+```
+
+---
+
+## 5. Patrón de Componente Field (RHF)
+
+```tsx
+"use client";
+
+import React, { useId } from "react";
+import {
+  useController,
+  type UseControllerProps,
+  type FieldValues,
+  type FieldPath,
+} from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+import { MyInput, type MyInputProps } from "../inputs/MyInput";
+import { cn } from "../../utils/cn";
+
+export interface MyFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<UseControllerProps<TFieldValues, TName>, "defaultValue">,
+    Omit<MyInputProps, "name" | "value" | "onChange" | "state"> {
+  label?: string;
+  hint?: string;
+}
+
+export function MyField<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>({
+  name,
+  control,
+  rules,
+  shouldUnregister,
+  label,
+  hint,
+  className,
+  ...inputProps
+}: MyFieldProps<TFieldValues, TName>) {
+  const generatedId = useId();
+  const id = `field-${name}-${generatedId}`;
+
+  const {
+    field,
+    fieldState: { error, invalid },
+    formState: { errors },
+  } = useController({ name, control, rules, shouldUnregister });
+
+  const state = invalid ? "error" : "default";
+
+  return (
+    <div className={cn("ui-myfield", className)}>
+      {label && <label htmlFor={id}>{label}</label>}
+      <MyInput
+        {...inputProps}
+        id={id}
+        name={field.name}
+        value={field.value}
+        onChange={field.onChange}
+        state={state}
+        ref={field.ref}
+      />
+      <div className="ui-myfield__helper">
+        <ErrorMessage
+          errors={errors}
+          name={name as string}
+          render={({ message }) => (
+            <span className="ui-myfield__error">{message}</span>
+          )}
+        />
+        {!error && hint && (
+          <span className="ui-myfield__hint">{hint}</span>
+        )}
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## 6. Storybook
 
 ### Estructura de stories
 
@@ -122,31 +292,25 @@ export const Default: Story = {
   },
 };
 
+// IMPORTANTE: Evitar duplicar nombres de funciones y exports
+const VariantExample = () => <ComponentName variant="special" />;
+
 export const Variant: Story = {
-  render: () => (
-    <ComponentName variant="special" />
-  ),
+  render: () => <VariantExample />,
 };
-```
-
-### Scripts
-
-```bash
-npm run storybook        # Desarrollo en localhost:6006
-npm run build-storybook  # Build estático
 ```
 
 ### Categorías
 
 | Categoría | Componentes |
 |-----------|-------------|
-| `Inputs/` | InputText, Select, DatePicker, NumberInput |
-| `Fields/` | TextField, SelectField, DateField, NumberField |
+| `Inputs/` | InputText, Button, Checkbox, Switch, RadioGroup, Select, DatePicker, NumberInput, PasswordInput |
+| `Fields/` | TextField, CheckboxField, SwitchField, RadioGroupField, SelectField, DateField, NumberField |
 | `Containers/` | FieldContainer, FloatingContainer |
 
 ---
 
-## 4. TypeScript & Docstrings
+## 7. TypeScript & Docstrings
 
 ### Docstrings obligatorios
 
@@ -178,7 +342,7 @@ export interface Props {
 
 ---
 
-## 5. CSS Custom Properties
+## 8. CSS Custom Properties
 
 ### Nomenclatura
 
@@ -200,16 +364,17 @@ export interface Props {
 
 ---
 
-## 6. React Patterns
+## 9. React Patterns
 
 - `forwardRef` para todos los inputs
 - `useId` para IDs únicos
+- `cn()` para clases condicionales
 - Composición sobre herencia
-- `useController` para integración con RHF
+- `useController` + `ErrorMessage` para integración con RHF
 
 ---
 
-## 7. Accesibilidad
+## 10. Accesibilidad
 
 - [ ] `label` + `htmlFor` / `id`
 - [ ] `aria-invalid` en errors
@@ -219,20 +384,37 @@ export interface Props {
 
 ---
 
-## 8. Checklist nuevos componentes
+## 11. Checklist nuevos componentes
 
-- [ ] Crear en la capa correcta
+- [ ] Crear en la capa correcta (`inputs/`, `fields/`, `containers/`)
 - [ ] Usar `forwardRef`
+- [ ] Usar `cn()` para clases
 - [ ] Docstrings completos
 - [ ] CSS variables para theming
 - [ ] Props: `size`, `state`, `disabled`, `className`
-- [ ] Estilos en `_*.scss`
+- [ ] Estilos en `_*.scss` (BEM: `.ui-{componente}--{modificador}`)
 - [ ] Exportar desde `index.ts`
 - [ ] Crear story en `__stories__/`
+- [ ] Usar `ErrorMessage` en Fields
 
 ---
 
-## 9. Scripts disponibles
+## 12. Dependencias principales
+
+| Librería | Uso |
+|----------|-----|
+| `primereact` (unstyled) | Componentes base (Button, Checkbox, etc.) |
+| `react-hook-form` | Manejo de formularios |
+| `@hookform/error-message` | Mensajes de error de validación |
+| `react-select` | Selectores avanzados |
+| `react-datepicker` | Date/time picker |
+| `react-number-format` | Inputs numéricos formateados |
+| `clsx` | Clases condicionales |
+| `tailwind-merge` | Merge inteligente de clases Tailwind |
+
+---
+
+## 13. Scripts disponibles
 
 ```bash
 npm run dev           # Next.js dev

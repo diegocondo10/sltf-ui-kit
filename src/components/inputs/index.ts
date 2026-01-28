@@ -3,6 +3,9 @@
  * @module @slft/ui-kit/inputs
  */
 
+export { Button } from "./Button";
+export type { ButtonProps } from "./Button";
+
 export { InputText } from "./InputText";
 export type { InputTextProps } from "./InputText";
 
@@ -17,3 +20,15 @@ export type { DatePickerProps } from "./DatePicker";
 
 export { NumberInput } from "./NumberInput";
 export type { NumberInputProps } from "./NumberInput";
+
+export { Checkbox } from "./Checkbox";
+export type { CheckboxProps } from "./Checkbox";
+
+export { Switch } from "./Switch";
+export type { SwitchProps } from "./Switch";
+
+export { RadioGroup } from "./RadioGroup";
+export type { RadioGroupProps } from "./RadioGroup";
+
+export { PasswordInput } from "./PasswordInput";
+export type { PasswordInputProps } from "./PasswordInput";

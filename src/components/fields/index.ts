@@ -17,3 +17,12 @@ export type { DateFieldProps } from "./DateField";
 
 export { NumberField } from "./NumberField";
 export type { NumberFieldProps } from "./NumberField";
+
+export { CheckboxField } from "./CheckboxField";
+export type { CheckboxFieldProps } from "./CheckboxField";
+
+export { SwitchField } from "./SwitchField";
+export type { SwitchFieldProps } from "./SwitchField";
+
+export { RadioGroupField } from "./RadioGroupField";
+export type { RadioGroupFieldProps } from "./RadioGroupField";

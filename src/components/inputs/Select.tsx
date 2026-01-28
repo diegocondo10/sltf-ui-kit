@@ -2,11 +2,11 @@
 
 import React, { forwardRef, useMemo } from "react";
 import ReactSelect, {
-  type Props as ReactSelectProps,
   type StylesConfig,
   type GroupBase,
 } from "react-select";
 import type { BaseInputProps, SelectOption, ComponentSize, FieldState } from "../types";
+import { cn } from "../../utils/cn";
 
 /**
  * Props for Select component
@@ -255,7 +255,7 @@ function SelectInner<T = string, IsMulti extends boolean = false>(
     isLoading = false,
     noOptionsMessage = "No options available",
     loadingMessage = "Loading...",
-    className = "",
+    className,
   }: SelectProps<T, IsMulti>,
   ref: React.ForwardedRef<ReactSelect<SelectOption<T>, IsMulti>>
 ): React.ReactElement {
@@ -311,7 +311,7 @@ function SelectInner<T = string, IsMulti extends boolean = false>(
       noOptionsMessage={() => noOptionsMessage}
       loadingMessage={() => loadingMessage}
       styles={customStyles}
-      className={`ui-select ${className}`}
+      className={cn("ui-select", className)}
       classNamePrefix="ui-select"
       aria-invalid={state === "error"}
     />

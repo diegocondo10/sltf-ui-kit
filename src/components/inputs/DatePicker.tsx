@@ -3,6 +3,7 @@
 import React, { forwardRef } from "react";
 import ReactDatePicker, { type DatePickerProps as ReactDatePickerProps } from "react-datepicker";
 import type { BaseInputProps, ComponentSize, FieldState } from "../types";
+import { cn } from "../../utils/cn";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -89,20 +90,11 @@ export interface DatePickerProps
  * Get input class names based on size and state
  */
 function getInputClassName(size: ComponentSize, state: FieldState): string {
-  const sizeClasses: Record<ComponentSize, string> = {
-    sm: "ui-datepicker--sm",
-    md: "ui-datepicker--md",
-    lg: "ui-datepicker--lg",
-  };
-
-  const stateClasses: Record<FieldState, string> = {
-    default: "",
-    error: "ui-datepicker--error",
-    success: "ui-datepicker--success",
-    warning: "ui-datepicker--warning",
-  };
-
-  return `ui-datepicker ${sizeClasses[size]} ${stateClasses[state]}`.trim();
+  return cn(
+    "ui-datepicker",
+    `ui-datepicker--${size}`,
+    state !== "default" && `ui-datepicker--${state}`
+  );
 }
 
 /**
@@ -145,7 +137,7 @@ export const DatePicker = forwardRef<ReactDatePicker, DatePickerProps>(function 
     maxDate,
     closeOnSelect = true,
     locale,
-    className = "",
+    className,
     ...props
   },
   ref,
@@ -157,7 +149,7 @@ export const DatePicker = forwardRef<ReactDatePicker, DatePickerProps>(function 
   };
 
   return (
-    <div className={`ui-datepicker-wrapper ${className}`}>
+    <div className={cn("ui-datepicker-wrapper", className)}>
       <ReactDatePicker
         ref={ref}
         id={id}
