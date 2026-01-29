@@ -1,0 +1,130 @@
+// ============================================
+// ButtonGroup Styles
+// ============================================
+
+.ui-button-group {
+  display: inline-flex;
+
+  // --------------------------------------------
+  // Orientation
+  // --------------------------------------------
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  // --------------------------------------------
+  // Attached mode (buttons connected)
+  // --------------------------------------------
+  &--attached {
+    &.ui-button-group--horizontal {
+      > .ui-button {
+        border-radius: 0;
+
+        &:first-child {
+          border-top-left-radius: var(--ui-radius-md);
+          border-bottom-left-radius: var(--ui-radius-md);
+        }
+
+        &:last-child {
+          border-top-right-radius: var(--ui-radius-md);
+          border-bottom-right-radius: var(--ui-radius-md);
+        }
+
+        // Prevent double borders
+        &:not(:first-child) {
+          margin-left: -1px;
+        }
+
+        // Hover/focus state brings button to front
+        &:hover,
+        &:focus,
+        &:active {
+          z-index: 1;
+        }
+      }
+    }
+
+    &.ui-button-group--vertical {
+      > .ui-button {
+        border-radius: 0;
+        width: 100%;
+
+        &:first-child {
+          border-top-left-radius: var(--ui-radius-md);
+          border-top-right-radius: var(--ui-radius-md);
+        }
+
+        &:last-child {
+          border-bottom-left-radius: var(--ui-radius-md);
+          border-bottom-right-radius: var(--ui-radius-md);
+        }
+
+        // Prevent double borders
+        &:not(:first-child) {
+          margin-top: -1px;
+        }
+
+        // Hover/focus state brings button to front
+        &:hover,
+        &:focus,
+        &:active {
+          z-index: 1;
+        }
+      }
+    }
+  }
+
+  // --------------------------------------------
+  // Detached mode (buttons with gap)
+  // --------------------------------------------
+  &--detached {
+    &.ui-button-group--horizontal {
+      gap: var(--ui-spacing-2);
+    }
+
+    &.ui-button-group--vertical {
+      gap: var(--ui-spacing-2);
+
+      > .ui-button {
+        width: 100%;
+      }
+    }
+  }
+
+  // --------------------------------------------
+  // Full width
+  // --------------------------------------------
+  &--full-width {
+    display: flex;
+    width: 100%;
+
+    > .ui-button {
+      flex: 1;
+    }
+  }
+
+  // --------------------------------------------
+  // Size variants (override button sizes if needed)
+  // --------------------------------------------
+  &--sm > .ui-button {
+    height: 32px;
+    padding: var(--ui-spacing-1) var(--ui-spacing-3);
+    font-size: var(--ui-font-size-xs);
+  }
+
+  &--md > .ui-button {
+    height: 40px;
+    padding: var(--ui-spacing-2) var(--ui-spacing-4);
+    font-size: var(--ui-font-size-sm);
+  }
+
+  &--lg > .ui-button {
+    height: 48px;
+    padding: var(--ui-spacing-3) var(--ui-spacing-6);
+    font-size: var(--ui-font-size-base);
+  }
+}

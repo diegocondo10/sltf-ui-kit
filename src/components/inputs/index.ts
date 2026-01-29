@@ -44,3 +44,9 @@ export type { MaskedInputProps } from "./MaskedInput";
 
 export { FileUploader } from "./FileUploader";
 export type { FileUploaderProps } from "./FileUploader";
+
+export { ButtonGroup } from "./ButtonGroup";
+export type { ButtonGroupProps } from "./ButtonGroup";
+
+export { InputGroup } from "./InputGroup";
+export type { InputGroupProps, InputGroupAddonProps } from "./InputGroup";
