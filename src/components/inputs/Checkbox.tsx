@@ -135,6 +135,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
         onChange={handleChange}
         disabled={disabled}
         aria-invalid={state === "error"}
+        unstyled
         pt={{
           root: { className: checkboxClasses },
           box: { className: "ui-checkbox__box" },

@@ -97,8 +97,8 @@
     }
 
     &:active:not(:disabled) {
-      background-color: var(--ui-color-danger-active);
-      border-color: var(--ui-color-danger-active);
+      background-color: var(--ui-color-danger-dark);
+      border-color: var(--ui-color-danger-dark);
     }
 
     &:focus-visible {
@@ -120,8 +120,8 @@
     }
 
     &:active:not(:disabled) {
-      background-color: var(--ui-color-warning-active);
-      border-color: var(--ui-color-warning-active);
+      background-color: var(--ui-color-warning-dark);
+      border-color: var(--ui-color-warning-dark);
     }
 
     &:focus-visible {
@@ -143,8 +143,8 @@
     }
 
     &:active:not(:disabled) {
-      background-color: var(--ui-color-success-active);
-      border-color: var(--ui-color-success-active);
+      background-color: var(--ui-color-success-dark);
+      border-color: var(--ui-color-success-dark);
     }
 
     &:focus-visible {
@@ -175,18 +175,25 @@
   &--link {
     background-color: transparent;
     color: var(--ui-color-primary);
-    border-color: transparent;
-    padding-left: 0;
-    padding-right: 0;
+    border: none;
+    padding: var(--ui-spacing-1) var(--ui-spacing-2);
     height: auto;
+    min-width: auto;
 
     &:hover:not(:disabled) {
+      background-color: transparent;
       color: var(--ui-color-primary-hover);
       text-decoration: underline;
     }
 
     &:active:not(:disabled) {
+      background-color: transparent;
       color: var(--ui-color-primary-active);
+    }
+
+    &:focus-visible {
+      box-shadow: none;
+      text-decoration: underline;
     }
   }
 

@@ -109,6 +109,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
         checked={checked}
         onChange={handleChange}
         disabled={disabled}
+        unstyled
         pt={{
           root: { className: switchClasses },
           slider: { className: "ui-switch__slider" },

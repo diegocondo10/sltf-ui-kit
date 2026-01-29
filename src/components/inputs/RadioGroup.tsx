@@ -133,6 +133,7 @@ function RadioGroupInner<T = string>(
               checked={isChecked}
               onChange={() => handleChange(option.value)}
               disabled={isDisabled}
+              unstyled
               pt={{
                 root: { className: "ui-radio__root" },
                 box: { className: "ui-radio__box" },

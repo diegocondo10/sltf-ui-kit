@@ -126,6 +126,7 @@ export const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(functi
       disabled={disabled}
       readOnly={readOnly}
       aria-invalid={state === "error"}
+      unstyled
       pt={{
         root: { className: inputClasses },
       }}

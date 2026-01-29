@@ -191,6 +191,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           disabled={disabled}
           readOnly={readOnly}
           aria-invalid={state === "error"}
+          unstyled
           pt={{
             root: { className: inputClasses },
           }}

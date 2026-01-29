@@ -7,7 +7,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <PrimeReactProvider
       value={{
-        unstyled: true,
         pt: globalPassThrough,
       }}
     >

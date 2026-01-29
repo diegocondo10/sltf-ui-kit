@@ -1,8 +1,6 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import { Button as PrimeButton } from "primereact/button";
-import type { ButtonProps as PrimeButtonProps, Button as PrimeButtonType } from "primereact/button";
 import type { ButtonVariant, ComponentSize } from "../types";
 import { cn } from "../../utils/cn";
 
@@ -10,7 +8,7 @@ import { cn } from "../../utils/cn";
  * Props for Button component
  */
 export interface ButtonProps
-  extends Omit<PrimeButtonProps, "size" | "severity" | "pt"> {
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "type"> {
   /**
    * Button visual variant
    * @default "primary"
@@ -53,26 +51,16 @@ export interface ButtonProps
   type?: "button" | "submit" | "reset";
 
   /**
-   * Additional CSS class names
-   */
-  className?: string;
-
-  /**
    * Button content
    */
   children?: React.ReactNode;
-
-  /**
-   * Click handler
-   */
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 /**
  * Button - Reusable button component with variants
  *
  * @description
- * PrimeReact Button with CSS custom properties for theming.
+ * Native HTML button with CSS custom properties for theming.
  * Supports multiple variants, sizes, loading state, and icons.
  *
  * @example
@@ -90,7 +78,7 @@ export interface ButtonProps
  * </Button>
  * ```
  */
-export const Button = forwardRef<PrimeButtonType, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {
       variant = "primary",
@@ -145,19 +133,17 @@ export const Button = forwardRef<PrimeButtonType, ButtonProps>(
     };
 
     return (
-      <PrimeButton
+      <button
         ref={ref}
         type={type}
         disabled={disabled || loading}
         aria-busy={loading}
         onClick={onClick}
-        pt={{
-          root: { className: buttonClasses },
-        }}
+        className={buttonClasses}
         {...props}
       >
         {renderContent()}
-      </PrimeButton>
+      </button>
     );
   }
 );

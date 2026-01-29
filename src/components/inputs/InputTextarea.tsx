@@ -102,6 +102,7 @@ export const InputTextarea = forwardRef<HTMLTextAreaElement, InputTextareaProps>
         rows={rows}
         autoResize={autoResize}
         aria-invalid={state === "error"}
+        unstyled
         pt={{
           root: { className: textareaClasses },
         }}
