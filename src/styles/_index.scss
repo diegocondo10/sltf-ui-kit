@@ -1,9 +1,9 @@
 // ============================================
-// Design System - Main Entry Point
+// Design System - SCSS Module Entry Point
 // ============================================
+// This file is for SCSS module system (@use)
+// The main entry point for the library is index.scss
 
 @forward "variables";
 @forward "functions";
 @forward "mixins";
-@forward "containers";
-@forward "inputs";

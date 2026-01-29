@@ -2,7 +2,8 @@ import type { Preview } from "@storybook/nextjs-vite";
 import React from "react";
 
 // Import global styles
-import "../src/app/globals.scss";
+import "../src/app/globals.css";
+import "../src/styles/index.scss";
 
 // Import providers
 import { Providers } from "../src/app/providers";

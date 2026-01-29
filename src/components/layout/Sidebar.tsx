@@ -13,7 +13,7 @@ export type SidebarPosition = "left" | "right" | "top" | "bottom";
 /**
  * Props for Sidebar component
  */
-export interface SidebarProps extends Omit<PrimeSidebarProps, "pt"> {
+export interface SidebarProps extends PrimeSidebarProps {
   /**
    * Whether the sidebar is visible
    */
@@ -79,7 +79,7 @@ export interface SidebarProps extends Omit<PrimeSidebarProps, "pt"> {
  * Sidebar - Side panel component using PrimeReact
  *
  * @description
- * PrimeReact Sidebar with CSS custom properties for theming.
+ * PrimeReact Sidebar with default PrimeReact styling.
  * Provides a sliding panel from any edge of the screen.
  *
  * @example
@@ -110,7 +110,6 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       header,
       children,
       modal = true,
-      closable = true,
       dismissable = true,
       showCloseIcon = true,
       className,
@@ -119,8 +118,6 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
     },
     ref
   ): React.ReactElement {
-    const sidebarClasses = cn("ui-sidebar", className);
-
     return (
       <PrimeSidebar
         ref={ref}
@@ -131,15 +128,8 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
         modal={modal}
         dismissable={dismissable}
         showCloseIcon={showCloseIcon}
+        className={cn("ui-sidebar", className)}
         style={style}
-        pt={{
-          root: { className: sidebarClasses },
-          header: { className: "ui-sidebar__header" },
-          headerContent: { className: "ui-sidebar__header-content" },
-          closeButton: { className: "ui-sidebar__close-button" },
-          content: { className: "ui-sidebar__content" },
-          mask: { className: "ui-sidebar__mask" },
-        }}
         {...props}
       >
         {children}

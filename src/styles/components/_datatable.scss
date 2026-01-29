@@ -1,155 +1,108 @@
 // DataTable Component Styles
-// Base styles for the DataTable component using CSS Custom Properties
+// Minimal overrides for PrimeReact DataTable component
+// Uses PrimeReact default styling with small customizations
 
 .ui-datatable {
+  // Use CSS custom properties for easy theming
   font-family: var(--ui-font-family);
 
-  &__wrapper {
-    overflow-x: auto;
+  // Table container
+  .p-datatable-wrapper {
+    border-radius: var(--ui-radius-lg);
+    overflow: hidden;
   }
 
-  &__table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: var(--ui-color-white);
-  }
-
-  // Header
-  &__thead {
+  // Header cells
+  .p-datatable-thead > tr > th {
     background-color: var(--ui-color-gray-50);
-    border-bottom: 2px solid var(--ui-color-gray-200);
-  }
-
-  &__header-row {
-    // Header row styles
-  }
-
-  &__header-cell {
-    padding: var(--ui-spacing-3) var(--ui-spacing-4);
-    text-align: left;
-    font-size: var(--ui-font-size-sm);
-    font-weight: var(--ui-font-weight-semibold);
     color: var(--ui-color-gray-700);
-    white-space: nowrap;
+    font-weight: var(--ui-font-weight-semibold);
+    border-color: var(--ui-color-gray-200);
+    transition: background-color var(--ui-transition-fast);
 
-    &[aria-sort] {
-      cursor: pointer;
-      user-select: none;
+    &.p-sortable-column:hover {
+      background-color: var(--ui-color-gray-100);
+    }
 
-      &:hover {
-        background-color: var(--ui-color-gray-100);
-      }
+    &.p-highlight {
+      background-color: var(--ui-color-primary-light);
+      color: var(--ui-color-primary);
     }
   }
 
-  &__sort-icon {
-    margin-left: var(--ui-spacing-2);
-    color: var(--ui-color-gray-400);
-  }
-
-  // Body
-  &__tbody {
-    // Body styles
-  }
-
-  &__body-row {
-    border-bottom: 1px solid var(--ui-color-gray-200);
+  // Body rows
+  .p-datatable-tbody > tr {
     transition: background-color var(--ui-transition-fast);
+    border-color: var(--ui-color-gray-200);
+
+    > td {
+      color: var(--ui-color-gray-900);
+      border-color: var(--ui-color-gray-200);
+    }
 
     &:hover {
       background-color: var(--ui-color-gray-50);
     }
 
-    &[aria-selected="true"] {
+    &.p-highlight {
       background-color: var(--ui-color-primary-light);
+      color: var(--ui-color-gray-900);
+
+      > td {
+        color: var(--ui-color-gray-900);
+      }
     }
-  }
-
-  &__column {
-    padding: var(--ui-spacing-3) var(--ui-spacing-4);
-    font-size: var(--ui-font-size-sm);
-    color: var(--ui-color-gray-900);
-  }
-
-  // Footer
-  &__tfoot {
-    background-color: var(--ui-color-gray-50);
-    border-top: 2px solid var(--ui-color-gray-200);
-    font-weight: var(--ui-font-weight-semibold);
   }
 
   // Striped rows
-  &--striped {
-    .ui-datatable__body-row:nth-child(even) {
-      background-color: var(--ui-color-gray-50);
+  &.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+    background-color: var(--ui-color-gray-50);
+
+    &:hover {
+      background-color: var(--ui-color-gray-100);
     }
   }
 
-  // Grid lines
-  &--gridlines {
-    .ui-datatable__header-cell,
-    .ui-datatable__column {
-      border: 1px solid var(--ui-color-gray-200);
-    }
-  }
-
-  // Paginator
-  &__paginator {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  // Paginator styling
+  .p-paginator {
+    background-color: var(--ui-color-gray-50);
+    border-color: var(--ui-color-gray-200);
     padding: var(--ui-spacing-3) var(--ui-spacing-4);
-    border-top: 1px solid var(--ui-color-gray-200);
-    background-color: var(--ui-color-white);
 
-    button {
-      padding: var(--ui-spacing-2);
-      border: 1px solid var(--ui-color-gray-300);
-      background-color: var(--ui-color-white);
+    .p-paginator-element {
       color: var(--ui-color-gray-700);
-      border-radius: var(--ui-radius-base);
-      cursor: pointer;
+      border-radius: var(--ui-radius-md);
       transition: all var(--ui-transition-fast);
 
-      &:hover:not(:disabled) {
+      &:hover:not(.p-disabled) {
         background-color: var(--ui-color-gray-100);
-        border-color: var(--ui-color-gray-400);
+        color: var(--ui-color-gray-900);
       }
 
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      &[aria-current="true"] {
+      &.p-highlight {
         background-color: var(--ui-color-primary);
-        border-color: var(--ui-color-primary);
         color: var(--ui-color-white);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px var(--ui-color-primary-light);
       }
     }
   }
 
   // Empty message
-  &__empty-message {
-    padding: var(--ui-spacing-8) var(--ui-spacing-4);
-    text-align: center;
+  .p-datatable-emptymessage td {
     color: var(--ui-color-gray-500);
-    font-size: var(--ui-font-size-sm);
+    text-align: center;
+    padding: var(--ui-spacing-8);
   }
 
-  // Row expansion
-  &__row-expansion {
-    background-color: var(--ui-color-gray-50);
-  }
-}
+  // Sort icons
+  .p-sortable-column-icon {
+    color: var(--ui-color-gray-400);
 
-// Responsive
-@media (max-width: 768px) {
-  .ui-datatable {
-    &__header-cell,
-    &__column {
-      padding: var(--ui-spacing-2) var(--ui-spacing-3);
-      font-size: var(--ui-font-size-xs);
+    .p-highlight & {
+      color: var(--ui-color-primary);
     }
   }
 }

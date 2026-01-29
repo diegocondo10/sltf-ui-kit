@@ -17,7 +17,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: var(--ui-spacing-1);
+    gap: var(--ui-spacing-2);
 
     // Individual tab
     li {
@@ -36,20 +36,21 @@
         text-decoration: none;
         border: none;
         background: transparent;
-        border-bottom: 2px solid transparent;
+        border-radius: var(--ui-radius-md) var(--ui-radius-md) 0 0;
         cursor: pointer;
         transition: all var(--ui-transition-fast);
         position: relative;
+        margin-bottom: -2px;
 
-        &:hover {
+        &:hover:not([aria-disabled="true"]) {
           color: var(--ui-color-gray-900);
           background-color: var(--ui-color-gray-50);
         }
 
         &:focus-visible {
           outline: 2px solid var(--ui-color-primary);
-          outline-offset: -2px;
-          border-radius: var(--ui-radius-base);
+          outline-offset: 2px;
+          z-index: 2;
         }
       }
 
@@ -57,6 +58,8 @@
       &[aria-selected="true"] a {
         color: var(--ui-color-primary);
         font-weight: var(--ui-font-weight-semibold);
+        background-color: var(--ui-color-primary-light);
+        border-bottom: 2px solid var(--ui-color-primary);
       }
 
       // Disabled tab
@@ -67,6 +70,7 @@
 
         &:hover {
           background-color: transparent;
+          color: var(--ui-color-gray-400);
         }
       }
     }
@@ -76,10 +80,11 @@
   &__inkbar {
     position: absolute;
     bottom: -2px;
-    height: 2px;
+    height: 3px;
     background-color: var(--ui-color-primary);
     transition: all var(--ui-transition-base);
     z-index: 1;
+    border-radius: var(--ui-radius-full) var(--ui-radius-full) 0 0;
   }
 
   // Panel container

@@ -14,7 +14,7 @@ export type DataTableSelectionMode = "single" | "multiple" | "checkbox" | "radio
 /**
  * Props for DataTable component
  */
-export interface DataTableProps<T = any> extends Omit<PrimeDataTableProps<any>, "pt"> {
+export interface DataTableProps<T = any> extends Omit<PrimeDataTableProps<T[]>, 'cellSelection' | 'selectionMode'> {
   /**
    * Array of data to display
    */
@@ -102,7 +102,7 @@ export interface DataTableProps<T = any> extends Omit<PrimeDataTableProps<any>, 
  * DataTable - Data table component using PrimeReact
  *
  * @description
- * PrimeReact DataTable with CSS custom properties for theming.
+ * PrimeReact DataTable with default PrimeReact styling.
  * Supports pagination, sorting, filtering, and selection.
  *
  * @example
@@ -142,15 +142,6 @@ export const DataTable = forwardRef(
     }: DataTableProps<T>,
     ref: any
   ): React.ReactElement {
-    const dataTableClasses = cn(
-      "ui-datatable",
-      {
-        "ui-datatable--striped": stripedRows,
-        "ui-datatable--gridlines": showGridlines,
-      },
-      className
-    );
-
     return (
       <PrimeDataTable
         ref={ref}
@@ -167,22 +158,7 @@ export const DataTable = forwardRef(
         showGridlines={showGridlines}
         responsiveLayout={responsiveLayout}
         emptyMessage={emptyMessage}
-        pt={{
-          root: { className: dataTableClasses },
-          wrapper: { className: "ui-datatable__wrapper" },
-          table: { className: "ui-datatable__table" },
-          thead: { className: "ui-datatable__thead" },
-          tbody: { className: "ui-datatable__tbody" },
-          tfoot: { className: "ui-datatable__tfoot" },
-          headerRow: { className: "ui-datatable__header-row" },
-          headerCell: { className: "ui-datatable__header-cell" },
-          bodyRow: { className: "ui-datatable__body-row" },
-          rowExpansion: { className: "ui-datatable__row-expansion" },
-          column: { className: "ui-datatable__column" },
-          sortIcon: { className: "ui-datatable__sort-icon" },
-          paginator: { className: "ui-datatable__paginator" },
-          emptyMessage: { className: "ui-datatable__empty-message" },
-        }}
+        className={cn("ui-datatable", className)}
         {...props}
       >
         {children}

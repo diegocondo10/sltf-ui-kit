@@ -1,98 +1,50 @@
 // Sidebar Component Styles
-// Base styles for the Sidebar component using CSS Custom Properties
-
-.ui-sidebar__mask {
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: var(--ui-z-modal);
-  transition: opacity var(--ui-transition-base);
-}
+// Minimal overrides for PrimeReact Sidebar component
+// Uses PrimeReact default styling with small customizations
 
 .ui-sidebar {
-  background-color: var(--ui-color-white);
-  box-shadow: var(--ui-shadow-2xl);
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  z-index: var(--ui-z-modal);
-  overflow: hidden;
+  // Use CSS custom properties for easy theming
+  --p-sidebar-background: var(--ui-color-white);
+  --p-sidebar-border-color: var(--ui-color-gray-200);
+  --p-sidebar-shadow: var(--ui-shadow-2xl);
 
-  &__header {
+  font-family: var(--ui-font-family);
+
+  // Header styling
+  .p-sidebar-header {
     padding: var(--ui-spacing-4) var(--ui-spacing-5);
     border-bottom: 1px solid var(--ui-color-gray-200);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
+
+    .p-sidebar-header-content {
+      font-size: var(--ui-font-size-lg);
+      font-weight: var(--ui-font-weight-semibold);
+      color: var(--ui-color-gray-900);
+    }
   }
 
-  &__header-content {
-    font-size: var(--ui-font-size-lg);
-    font-weight: var(--ui-font-weight-semibold);
-    color: var(--ui-color-gray-900);
-    flex: 1;
-  }
-
-  &__close-button {
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: transparent;
+  // Close button
+  .p-sidebar-close {
     color: var(--ui-color-gray-500);
-    border-radius: var(--ui-radius-base);
-    cursor: pointer;
     transition: all var(--ui-transition-fast);
 
     &:hover {
       background-color: var(--ui-color-gray-100);
-      color: var(--ui-color-gray-700);
+      color: var(--ui-color-gray-900);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px var(--ui-color-primary-light);
     }
   }
 
-  &__content {
+  // Content area
+  .p-sidebar-content {
     padding: var(--ui-spacing-5);
-    flex: 1;
-    overflow-y: auto;
   }
 }
 
-// Position styles
-.ui-sidebar[data-position="left"],
-.ui-sidebar[data-position="right"] {
-  top: 0;
-  height: 100%;
-  width: 20rem;
-  max-width: 90vw;
-}
-
-.ui-sidebar[data-position="left"] {
-  left: 0;
-}
-
-.ui-sidebar[data-position="right"] {
-  right: 0;
-}
-
-.ui-sidebar[data-position="top"],
-.ui-sidebar[data-position="bottom"] {
-  left: 0;
-  width: 100%;
-  height: 20rem;
-  max-height: 90vh;
-}
-
-.ui-sidebar[data-position="top"] {
-  top: 0;
-}
-
-.ui-sidebar[data-position="bottom"] {
-  bottom: 0;
+// Mask/backdrop styling
+.p-sidebar-mask {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
 }

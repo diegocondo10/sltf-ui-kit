@@ -3,6 +3,10 @@
 // ============================================
 // Each component has its own file for better maintainability
 
+// Containers & Layout primitives
+@import "../containers";
+@import "../buttons";
+
 // Base inputs
 @import "input";
 @import "textarea";

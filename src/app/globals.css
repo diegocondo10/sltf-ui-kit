@@ -1,0 +1,510 @@
+/*
+  ================================================================
+  SLFT UI-KIT - DESIGN SYSTEM
+  ================================================================
+
+  Estructura del archivo:
+  1. Dependencies (External imports)
+  2. Design Tokens (CSS Variables)
+  3. Theme Configuration (Tailwind theme)
+  4. Base Styles (Reset & defaults)
+  5. PrimeReact Layer
+  6. Utilities (Reusable classes)
+  7. Animations (Keyframes & transitions)
+
+  ================================================================
+*/
+
+/* ================================================================
+   1. EXTERNAL DEPENDENCIES
+   ================================================================ */
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ================================================================
+   2. DESIGN TOKENS (CSS Custom Properties)
+   ================================================================ */
+
+:root {
+  /* === Base Colors === */
+  --ui-background: oklch(0.98 0.003 250);
+  --ui-foreground: oklch(0.25 0.04 240);
+
+  /* === Card & Surface === */
+  --ui-card: oklch(1 0 0);
+  --ui-card-foreground: oklch(0.25 0.04 240);
+
+  /* === Brand Colors === */
+  --ui-primary: oklch(0.55 0.18 250);
+  --ui-primary-hover: oklch(0.48 0.18 250);
+  --ui-primary-active: oklch(0.42 0.18 250);
+  --ui-primary-light: oklch(0.95 0.03 250);
+  --ui-primary-dark: oklch(0.35 0.15 250);
+  --ui-primary-foreground: oklch(0.98 0.01 250);
+
+  --ui-secondary: oklch(0.55 0.04 260);
+  --ui-secondary-hover: oklch(0.48 0.04 260);
+  --ui-secondary-light: oklch(0.97 0.01 260);
+  --ui-secondary-dark: oklch(0.25 0.04 260);
+  --ui-secondary-foreground: oklch(0.98 0.01 260);
+
+  --ui-accent: oklch(0.75 0.15 85);
+  --ui-accent-foreground: oklch(0.25 0.04 85);
+
+  /* === Semantic Colors === */
+  --ui-success: oklch(0.65 0.18 145);
+  --ui-success-hover: oklch(0.58 0.18 145);
+  --ui-success-light: oklch(0.95 0.05 145);
+  --ui-success-dark: oklch(0.45 0.15 145);
+  --ui-success-foreground: oklch(0.98 0.01 145);
+
+  --ui-warning: oklch(0.75 0.15 75);
+  --ui-warning-hover: oklch(0.68 0.15 75);
+  --ui-warning-light: oklch(0.95 0.05 75);
+  --ui-warning-dark: oklch(0.55 0.12 75);
+  --ui-warning-foreground: oklch(0.25 0.04 75);
+
+  --ui-danger: oklch(0.58 0.22 27);
+  --ui-danger-hover: oklch(0.52 0.22 27);
+  --ui-danger-light: oklch(0.95 0.05 27);
+  --ui-danger-dark: oklch(0.45 0.18 27);
+  --ui-danger-foreground: oklch(0.98 0.01 27);
+
+  --ui-info: oklch(0.6 0.15 240);
+  --ui-info-hover: oklch(0.53 0.15 240);
+  --ui-info-light: oklch(0.95 0.05 240);
+  --ui-info-dark: oklch(0.45 0.12 240);
+  --ui-info-foreground: oklch(0.98 0.01 240);
+
+  /* === Neutral Colors (Gray Scale) === */
+  --ui-white: oklch(1 0 0);
+  --ui-black: oklch(0 0 0);
+  --ui-gray-50: oklch(0.985 0.002 250);
+  --ui-gray-100: oklch(0.97 0.003 250);
+  --ui-gray-200: oklch(0.92 0.004 250);
+  --ui-gray-300: oklch(0.87 0.006 250);
+  --ui-gray-400: oklch(0.7 0.01 250);
+  --ui-gray-500: oklch(0.55 0.014 250);
+  --ui-gray-600: oklch(0.45 0.014 250);
+  --ui-gray-700: oklch(0.37 0.012 250);
+  --ui-gray-800: oklch(0.27 0.01 250);
+  --ui-gray-900: oklch(0.2 0.008 250);
+
+  /* === Neutral Semantic === */
+  --ui-muted: oklch(0.92 0.01 250);
+  --ui-muted-foreground: oklch(0.55 0.03 250);
+  --ui-border: oklch(0.92 0.01 250);
+  --ui-input: oklch(1 0 0);
+  --ui-ring: oklch(0.55 0.18 250);
+
+  /* === Typography === */
+  --ui-font-family: "Inter", system-ui, -apple-system, sans-serif;
+  --ui-font-family-display: "Inter", system-ui, -apple-system, sans-serif;
+  --ui-font-family-mono: "Fira Code", "Consolas", monospace;
+
+  --ui-font-size-xs: 0.75rem;
+  --ui-font-size-sm: 0.875rem;
+  --ui-font-size-base: 1rem;
+  --ui-font-size-lg: 1.125rem;
+  --ui-font-size-xl: 1.25rem;
+  --ui-font-size-2xl: 1.5rem;
+  --ui-font-size-3xl: 1.875rem;
+  --ui-font-size-4xl: 2.25rem;
+
+  --ui-font-weight-light: 300;
+  --ui-font-weight-normal: 400;
+  --ui-font-weight-medium: 500;
+  --ui-font-weight-semibold: 600;
+  --ui-font-weight-bold: 700;
+
+  --ui-line-height-tight: 1.25;
+  --ui-line-height-normal: 1.5;
+  --ui-line-height-relaxed: 1.75;
+
+  /* === Spacing === */
+  --ui-spacing-0: 0;
+  --ui-spacing-1: 0.25rem;
+  --ui-spacing-2: 0.5rem;
+  --ui-spacing-3: 0.75rem;
+  --ui-spacing-4: 1rem;
+  --ui-spacing-5: 1.25rem;
+  --ui-spacing-6: 1.5rem;
+  --ui-spacing-8: 2rem;
+  --ui-spacing-10: 2.5rem;
+  --ui-spacing-12: 3rem;
+  --ui-spacing-16: 4rem;
+  --ui-spacing-20: 5rem;
+  --ui-spacing-24: 6rem;
+
+  /* === Border Radius === */
+  --ui-radius: 0.5rem;
+  --ui-radius-none: 0;
+  --ui-radius-sm: calc(var(--ui-radius) - 4px);
+  --ui-radius-base: calc(var(--ui-radius) - 2px);
+  --ui-radius-md: var(--ui-radius);
+  --ui-radius-lg: calc(var(--ui-radius) + 2px);
+  --ui-radius-xl: calc(var(--ui-radius) + 4px);
+  --ui-radius-2xl: calc(var(--ui-radius) + 8px);
+  --ui-radius-full: 9999px;
+
+  /* === Shadows === */
+  --ui-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ui-shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --ui-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --ui-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --ui-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --ui-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* === Transitions === */
+  --ui-transition-fast: 150ms ease;
+  --ui-transition-base: 200ms ease;
+  --ui-transition-slow: 300ms ease;
+
+  /* === Z-Index === */
+  --ui-z-dropdown: 1000;
+  --ui-z-sticky: 1020;
+  --ui-z-fixed: 1030;
+  --ui-z-modal-backdrop: 1040;
+  --ui-z-modal: 1050;
+  --ui-z-popover: 1060;
+  --ui-z-tooltip: 1070;
+  --ui-z-toast: 9999;
+
+  /* === Legacy Mappings (for backwards compatibility) === */
+  --ui-color-primary: var(--ui-primary);
+  --ui-color-primary-hover: var(--ui-primary-hover);
+  --ui-color-primary-active: var(--ui-primary-active);
+  --ui-color-primary-light: var(--ui-primary-light);
+  --ui-color-primary-dark: var(--ui-primary-dark);
+
+  --ui-color-secondary: var(--ui-secondary);
+  --ui-color-secondary-hover: var(--ui-secondary-hover);
+  --ui-color-secondary-light: var(--ui-secondary-light);
+  --ui-color-secondary-dark: var(--ui-secondary-dark);
+
+  --ui-color-success: var(--ui-success);
+  --ui-color-success-hover: var(--ui-success-hover);
+  --ui-color-success-light: var(--ui-success-light);
+  --ui-color-success-dark: var(--ui-success-dark);
+
+  --ui-color-warning: var(--ui-warning);
+  --ui-color-warning-hover: var(--ui-warning-hover);
+  --ui-color-warning-light: var(--ui-warning-light);
+  --ui-color-warning-dark: var(--ui-warning-dark);
+
+  --ui-color-danger: var(--ui-danger);
+  --ui-color-danger-hover: var(--ui-danger-hover);
+  --ui-color-danger-light: var(--ui-danger-light);
+  --ui-color-danger-dark: var(--ui-danger-dark);
+
+  --ui-color-info: var(--ui-info);
+  --ui-color-info-hover: var(--ui-info-hover);
+  --ui-color-info-light: var(--ui-info-light);
+  --ui-color-info-dark: var(--ui-info-dark);
+
+  --ui-color-white: var(--ui-white);
+  --ui-color-black: var(--ui-black);
+  --ui-color-gray-50: var(--ui-gray-50);
+  --ui-color-gray-100: var(--ui-gray-100);
+  --ui-color-gray-200: var(--ui-gray-200);
+  --ui-color-gray-300: var(--ui-gray-300);
+  --ui-color-gray-400: var(--ui-gray-400);
+  --ui-color-gray-500: var(--ui-gray-500);
+  --ui-color-gray-600: var(--ui-gray-600);
+  --ui-color-gray-700: var(--ui-gray-700);
+  --ui-color-gray-800: var(--ui-gray-800);
+  --ui-color-gray-900: var(--ui-gray-900);
+}
+
+/* === Dark Mode === */
+.dark {
+  --ui-background: oklch(0.18 0.04 250);
+  --ui-foreground: oklch(0.95 0.01 250);
+
+  --ui-card: oklch(0.22 0.04 250);
+  --ui-card-foreground: oklch(0.95 0.01 250);
+
+  --ui-primary: oklch(0.65 0.18 250);
+  --ui-primary-hover: oklch(0.7 0.18 250);
+  --ui-primary-light: oklch(0.3 0.08 250);
+  --ui-primary-dark: oklch(0.55 0.15 250);
+
+  --ui-secondary: oklch(0.65 0.04 260);
+  --ui-secondary-light: oklch(0.3 0.02 260);
+
+  --ui-gray-50: oklch(0.25 0.005 250);
+  --ui-gray-100: oklch(0.28 0.006 250);
+  --ui-gray-200: oklch(0.32 0.008 250);
+  --ui-gray-300: oklch(0.4 0.01 250);
+  --ui-gray-400: oklch(0.5 0.012 250);
+  --ui-gray-500: oklch(0.6 0.014 250);
+  --ui-gray-600: oklch(0.7 0.012 250);
+  --ui-gray-700: oklch(0.8 0.01 250);
+  --ui-gray-800: oklch(0.88 0.006 250);
+  --ui-gray-900: oklch(0.95 0.003 250);
+
+  --ui-muted: oklch(0.3 0.04 250);
+  --ui-muted-foreground: oklch(0.7 0.03 250);
+  --ui-border: oklch(0.32 0.04 250);
+  --ui-input: oklch(0.22 0.04 250);
+  --ui-ring: oklch(0.65 0.18 250);
+
+  --ui-white: oklch(0.15 0.02 250);
+  --ui-black: oklch(0.98 0.01 250);
+
+  /* Legacy dark mappings */
+  --ui-color-gray-50: var(--ui-gray-50);
+  --ui-color-gray-100: var(--ui-gray-100);
+  --ui-color-gray-200: var(--ui-gray-200);
+  --ui-color-gray-300: var(--ui-gray-300);
+  --ui-color-gray-400: var(--ui-gray-400);
+  --ui-color-gray-500: var(--ui-gray-500);
+  --ui-color-gray-600: var(--ui-gray-600);
+  --ui-color-gray-700: var(--ui-gray-700);
+  --ui-color-gray-800: var(--ui-gray-800);
+  --ui-color-gray-900: var(--ui-gray-900);
+  --ui-color-white: var(--ui-white);
+  --ui-color-black: var(--ui-black);
+}
+
+/* ================================================================
+   3. THEME CONFIGURATION (Tailwind CSS 4)
+   ================================================================ */
+
+@theme inline {
+  /* === Typography === */
+  --font-sans: var(--ui-font-family);
+  --font-display: var(--ui-font-family-display);
+  --font-mono: var(--ui-font-family-mono);
+
+  /* === Base Colors === */
+  --color-background: var(--ui-background);
+  --color-foreground: var(--ui-foreground);
+
+  /* === Surface Colors === */
+  --color-card: var(--ui-card);
+  --color-card-foreground: var(--ui-card-foreground);
+
+  /* === Brand Colors === */
+  --color-primary: var(--ui-primary);
+  --color-primary-hover: var(--ui-primary-hover);
+  --color-primary-light: var(--ui-primary-light);
+  --color-primary-dark: var(--ui-primary-dark);
+  --color-primary-foreground: var(--ui-primary-foreground);
+
+  --color-secondary: var(--ui-secondary);
+  --color-secondary-hover: var(--ui-secondary-hover);
+  --color-secondary-light: var(--ui-secondary-light);
+  --color-secondary-dark: var(--ui-secondary-dark);
+  --color-secondary-foreground: var(--ui-secondary-foreground);
+
+  --color-accent: var(--ui-accent);
+  --color-accent-foreground: var(--ui-accent-foreground);
+
+  /* === Semantic Colors === */
+  --color-success: var(--ui-success);
+  --color-success-foreground: var(--ui-success-foreground);
+  --color-warning: var(--ui-warning);
+  --color-warning-foreground: var(--ui-warning-foreground);
+  --color-danger: var(--ui-danger);
+  --color-danger-foreground: var(--ui-danger-foreground);
+  --color-info: var(--ui-info);
+  --color-info-foreground: var(--ui-info-foreground);
+
+  /* === Neutral Colors === */
+  --color-muted: var(--ui-muted);
+  --color-muted-foreground: var(--ui-muted-foreground);
+  --color-border: var(--ui-border);
+  --color-input: var(--ui-input);
+  --color-ring: var(--ui-ring);
+
+  /* === Gray Scale === */
+  --color-gray-50: var(--ui-gray-50);
+  --color-gray-100: var(--ui-gray-100);
+  --color-gray-200: var(--ui-gray-200);
+  --color-gray-300: var(--ui-gray-300);
+  --color-gray-400: var(--ui-gray-400);
+  --color-gray-500: var(--ui-gray-500);
+  --color-gray-600: var(--ui-gray-600);
+  --color-gray-700: var(--ui-gray-700);
+  --color-gray-800: var(--ui-gray-800);
+  --color-gray-900: var(--ui-gray-900);
+
+  /* === Border Radius === */
+  --radius-sm: var(--ui-radius-sm);
+  --radius-md: var(--ui-radius-md);
+  --radius-lg: var(--ui-radius-lg);
+  --radius-xl: var(--ui-radius-xl);
+  --radius-2xl: var(--ui-radius-2xl);
+  --radius-full: var(--ui-radius-full);
+}
+
+/* ================================================================
+   4. BASE STYLES (Global resets and defaults)
+   ================================================================ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    border-color: var(--ui-border);
+    outline-color: color-mix(in oklch, var(--ui-ring), transparent 50%);
+  }
+
+  body {
+    background-color: var(--ui-background);
+    color: var(--ui-foreground);
+    font-family: var(--ui-font-family);
+    font-size: var(--ui-font-size-base);
+    line-height: var(--ui-line-height-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--ui-font-family-display);
+    font-weight: var(--ui-font-weight-bold);
+  }
+}
+
+/* ================================================================
+   5. PRIMEREACT LAYER
+   ================================================================ */
+
+@layer primereact {
+  @import "primereact/resources/themes/lara-light-blue/theme.css";
+}
+
+/* ================================================================
+   6. UTILITY CLASSES
+   ================================================================ */
+
+/* === Semantic Text Colors === */
+.text-success {
+  color: var(--ui-success);
+}
+
+.text-warning {
+  color: var(--ui-warning);
+}
+
+.text-danger {
+  color: var(--ui-danger);
+}
+
+.text-info {
+  color: var(--ui-info);
+}
+
+/* === Semantic Background Colors === */
+.bg-success {
+  background-color: var(--ui-success);
+}
+
+.bg-warning {
+  background-color: var(--ui-warning);
+}
+
+.bg-danger {
+  background-color: var(--ui-danger);
+}
+
+.bg-info {
+  background-color: var(--ui-info);
+}
+
+/* === Gradient Utilities === */
+.gradient-primary {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--ui-primary),
+    color-mix(in oklch, var(--ui-primary), transparent 20%)
+  );
+}
+
+.gradient-accent {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--ui-accent),
+    color-mix(in oklch, var(--ui-accent), transparent 20%)
+  );
+}
+
+/* ================================================================
+   7. ANIMATIONS
+   ================================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* === Animation Classes === */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slideDown {
+  animation: slideDown var(--ui-transition-fast) ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* === Animation Delays === */
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+.delay-2000 {
+  animation-delay: 2s;
+}
