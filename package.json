@@ -25,6 +25,13 @@
     "dist",
     "src/styles"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diegocondo10/sltf-ui-kit.git"
+  },
   "sideEffects": [
     "**/*.css",
     "**/*.scss"
