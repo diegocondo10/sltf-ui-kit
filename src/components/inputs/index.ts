@@ -1,6 +1,6 @@
 /**
  * @fileoverview Raw input components for UI Kit
- * @module @slft/ui-kit/inputs
+ * @module @sltf/ui-kit/inputs
  */
 
 export { Button } from "./Button";

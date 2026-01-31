@@ -29,7 +29,7 @@ const frameworkOptions = [
  * ## Uso
  * ```tsx
  * import { useForm } from "react-hook-form";
- * import { MultiSelectField } from "@slft/ui-kit";
+ * import { MultiSelectField } from "@sltf/ui-kit";
  *
  * function MyForm() {
  *   const { control } = useForm();

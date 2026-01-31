@@ -19,7 +19,7 @@ const countryOptions = [
  *
  * ## Uso
  * ```tsx
- * import { Select } from "@slft/ui-kit";
+ * import { Select } from "@sltf/ui-kit";
  *
  * <Select
  *   options={[

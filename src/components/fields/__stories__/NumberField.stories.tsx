@@ -9,7 +9,7 @@ import { NumberField } from "../NumberField";
  * ## Uso
  * ```tsx
  * import { useForm } from "react-hook-form";
- * import { NumberField } from "@slft/ui-kit";
+ * import { NumberField } from "@sltf/ui-kit";
  *
  * function MyForm() {
  *   const { control } = useForm();

@@ -8,7 +8,7 @@ import { Button } from "../../inputs/Button";
  *
  * ## Uso
  * ```tsx
- * import { MenuBar } from "@slft/ui-kit";
+ * import { MenuBar } from "@sltf/ui-kit";
  *
  * const items = [
  *   {

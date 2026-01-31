@@ -1,6 +1,6 @@
 /**
  * @fileoverview Field components with React Hook Form integration
- * @module @slft/ui-kit/fields
+ * @module @sltf/ui-kit/fields
  */
 
 export { TextField } from "./TextField";

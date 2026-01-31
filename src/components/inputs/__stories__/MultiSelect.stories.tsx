@@ -29,7 +29,7 @@ const frameworks: SelectOption<string>[] = [
  *
  * ## Uso
  * ```tsx
- * import { MultiSelect } from "@slft/ui-kit";
+ * import { MultiSelect } from "@sltf/ui-kit";
  *
  * <MultiSelect
  *   options={countries}

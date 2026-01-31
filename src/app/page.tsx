@@ -219,7 +219,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="mt-12 text-center text-gray-500 text-sm">
-          <p>UI Kit v0.1.0 - @slft/ui-kit</p>
+          <p>UI Kit v0.1.0 - @sltf/ui-kit</p>
         </footer>
       </div>
     </main>

@@ -7,7 +7,7 @@ import { Button } from "../Button";
  *
  * ## Uso
  * ```tsx
- * import { Button } from "@slft/ui-kit";
+ * import { Button } from "@sltf/ui-kit";
  *
  * <Button variant="primary" onClick={handleClick}>
  *   Guardar

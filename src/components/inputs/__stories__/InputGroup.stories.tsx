@@ -9,7 +9,7 @@ import { Button } from "../Button";
  *
  * ## Uso
  * ```tsx
- * import { InputGroup, InputText, Button } from "@slft/ui-kit";
+ * import { InputGroup, InputText, Button } from "@sltf/ui-kit";
  *
  * <InputGroup>
  *   <InputGroup.Addon>$</InputGroup.Addon>

@@ -33,7 +33,7 @@ const products: Product[] = [
  *
  * ## Uso
  * ```tsx
- * import { DataTable, Column } from "@slft/ui-kit";
+ * import { DataTable, Column } from "@sltf/ui-kit";
  *
  * const products = [
  *   { id: 1, name: 'Product 1', price: 100 },

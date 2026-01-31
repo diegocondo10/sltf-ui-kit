@@ -25,7 +25,7 @@ const tagOptions = [
  * ## Uso
  * ```tsx
  * import { useForm } from "react-hook-form";
- * import { SelectField } from "@slft/ui-kit";
+ * import { SelectField } from "@sltf/ui-kit";
  *
  * function MyForm() {
  *   const { control } = useForm();

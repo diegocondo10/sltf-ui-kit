@@ -9,7 +9,7 @@ import { Button } from "../../inputs/Button";
  *
  * ## Uso
  * ```tsx
- * import { CheckboxField } from "@slft/ui-kit";
+ * import { CheckboxField } from "@sltf/ui-kit";
  * import { useForm } from "react-hook-form";
  *
  * const { control } = useForm();

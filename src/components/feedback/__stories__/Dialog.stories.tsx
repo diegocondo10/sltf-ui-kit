@@ -9,7 +9,7 @@ import { Button } from "../../inputs/Button";
  *
  * ## Uso
  * ```tsx
- * import { Dialog } from "@slft/ui-kit";
+ * import { Dialog } from "@sltf/ui-kit";
  *
  * const [visible, setVisible] = useState(false);
  *

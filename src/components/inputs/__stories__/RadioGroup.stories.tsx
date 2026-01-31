@@ -8,7 +8,7 @@ import { RadioGroup } from "../RadioGroup";
  *
  * ## Uso
  * ```tsx
- * import { RadioGroup } from "@slft/ui-kit";
+ * import { RadioGroup } from "@sltf/ui-kit";
  *
  * <RadioGroup
  *   name="color"

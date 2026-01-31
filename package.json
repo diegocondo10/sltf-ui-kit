@@ -1,6 +1,6 @@
 {
-  "name": "@slft/ui-kit",
-  "version": "0.1.1",
+  "name": "@sltf/ui-kit",
+  "version": "0.1.2",
   "description": "Reusable UI components library with PrimeReact, Tailwind CSS and React Hook Form",
   "author": "MrRainx",
   "license": "MIT",

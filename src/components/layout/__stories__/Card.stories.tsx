@@ -7,7 +7,7 @@ import { Card } from "../Card";
  *
  * ## Uso
  * ```tsx
- * import { Card } from "@slft/ui-kit";
+ * import { Card } from "@sltf/ui-kit";
  *
  * <Card
  *   title="Card Title"

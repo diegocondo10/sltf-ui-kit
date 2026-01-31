@@ -1,6 +1,6 @@
 /**
  * @fileoverview Layout components for organizing page structure
- * @module @slft/ui-kit/layout
+ * @module @sltf/ui-kit/layout
  */
 
 export { Card } from "./Card";

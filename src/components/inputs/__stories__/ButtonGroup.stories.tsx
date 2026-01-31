@@ -8,7 +8,7 @@ import { Button } from "../Button";
  *
  * ## Uso
  * ```tsx
- * import { ButtonGroup, Button } from "@slft/ui-kit";
+ * import { ButtonGroup, Button } from "@sltf/ui-kit";
  *
  * <ButtonGroup>
  *   <Button variant="secondary">Izquierda</Button>

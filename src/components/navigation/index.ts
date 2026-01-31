@@ -1,6 +1,6 @@
 /**
  * @fileoverview Navigation components
- * @module @slft/ui-kit/navigation
+ * @module @sltf/ui-kit/navigation
  */
 
 export { Tabs, TabPanel } from "./Tabs";

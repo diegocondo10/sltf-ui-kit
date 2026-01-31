@@ -8,7 +8,7 @@ import { PasswordInput } from "../PasswordInput";
  *
  * ## Uso
  * ```tsx
- * import { PasswordInput } from "@slft/ui-kit";
+ * import { PasswordInput } from "@sltf/ui-kit";
  *
  * <PasswordInput
  *   placeholder="Enter password..."

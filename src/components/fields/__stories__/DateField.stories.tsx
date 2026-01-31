@@ -9,7 +9,7 @@ import { DateField } from "../DateField";
  * ## Uso
  * ```tsx
  * import { useForm } from "react-hook-form";
- * import { DateField } from "@slft/ui-kit";
+ * import { DateField } from "@sltf/ui-kit";
  *
  * function MyForm() {
  *   const { control } = useForm();

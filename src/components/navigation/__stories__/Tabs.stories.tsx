@@ -8,7 +8,7 @@ import { Tabs, TabPanel } from "../Tabs";
  *
  * ## Uso
  * ```tsx
- * import { Tabs, TabPanel } from "@slft/ui-kit";
+ * import { Tabs, TabPanel } from "@sltf/ui-kit";
  *
  * <Tabs>
  *   <TabPanel header="Tab 1">

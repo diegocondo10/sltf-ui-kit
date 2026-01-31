@@ -1,6 +1,6 @@
 /**
  * @fileoverview Shared types for UI Kit components
- * @module @slft/ui-kit/types
+ * @module @sltf/ui-kit/types
  */
 
 import type { FieldError } from "react-hook-form";

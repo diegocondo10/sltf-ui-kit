@@ -22,7 +22,7 @@ const countries: SelectOption<string>[] = [
  *
  * ## Uso
  * ```tsx
- * import { AutoComplete } from "@slft/ui-kit";
+ * import { AutoComplete } from "@sltf/ui-kit";
  *
  * const [value, setValue] = useState('');
  * const [suggestions, setSuggestions] = useState([]);

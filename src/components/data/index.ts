@@ -1,6 +1,6 @@
 /**
  * @fileoverview Data display components
- * @module @slft/ui-kit/data
+ * @module @sltf/ui-kit/data
  */
 
 export { DataTable, Column } from "./DataTable";

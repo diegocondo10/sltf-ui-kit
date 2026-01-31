@@ -8,7 +8,7 @@ import { Switch } from "../Switch";
  *
  * ## Uso
  * ```tsx
- * import { Switch } from "@slft/ui-kit";
+ * import { Switch } from "@sltf/ui-kit";
  *
  * <Switch
  *   checked={isEnabled}

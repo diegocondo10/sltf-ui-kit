@@ -1,6 +1,6 @@
 /**
  * @fileoverview Container components for form field layouts
- * @module @slft/ui-kit/containers
+ * @module @sltf/ui-kit/containers
  */
 
 export { FieldContainer } from "./FieldContainer";

@@ -192,7 +192,7 @@ export interface PromiseToastOptions<T> {
  * @example
  * ```tsx
  * // In your app root
- * import { ToastProvider } from '@slft/ui-kit';
+ * import { ToastProvider } from '@sltf/ui-kit';
  *
  * function App() {
  *   return (
@@ -263,7 +263,7 @@ export function ToastProvider({
  *
  * @example
  * ```tsx
- * import { toast } from '@slft/ui-kit';
+ * import { toast } from '@sltf/ui-kit';
  *
  * // Simple messages
  * toast('Hello world');

@@ -1,6 +1,6 @@
 /**
  * @fileoverview UI Kit - Main Components Export
- * @module @slft/ui-kit
+ * @module @sltf/ui-kit
  */
 
 // ============================================

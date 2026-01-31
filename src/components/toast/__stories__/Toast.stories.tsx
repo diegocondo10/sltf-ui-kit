@@ -7,7 +7,7 @@ import { ToastProvider, toast } from "../Toast";
  * ## Setup
  * Add `ToastProvider` at the root of your application:
  * ```tsx
- * import { ToastProvider } from '@slft/ui-kit';
+ * import { ToastProvider } from '@sltf/ui-kit';
  *
  * function App() {
  *   return (
@@ -21,7 +21,7 @@ import { ToastProvider, toast } from "../Toast";
  *
  * ## Usage
  * ```tsx
- * import { toast } from '@slft/ui-kit';
+ * import { toast } from '@sltf/ui-kit';
  *
  * // Simple messages
  * toast.success('Saved successfully');

@@ -10,7 +10,7 @@ El UI Kit usa **CSS Custom Properties (variables CSS)** para todos los valores v
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  @slft/ui-kit (Librería)                                    │
+│  @sltf/ui-kit (Librería)                                    │
 │  ───────────────────────                                    │
 │  • Define CSS Variables con valores por defecto             │
 │  • Componentes usan SOLO esas variables                     │
@@ -34,7 +34,7 @@ El UI Kit usa **CSS Custom Properties (variables CSS)** para todos los valores v
 
 ```scss
 // styles/globals.scss
-@import "@slft/ui-kit/styles";
+@import "@sltf/ui-kit/styles";
 ```
 
 ### 2. Sobrescribir variables

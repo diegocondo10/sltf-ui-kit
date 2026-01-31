@@ -21,7 +21,7 @@ const countries: SelectOption<string>[] = [
  * ## Uso
  * ```tsx
  * import { useForm } from "react-hook-form";
- * import { AutoCompleteField } from "@slft/ui-kit";
+ * import { AutoCompleteField } from "@sltf/ui-kit";
  *
  * function MyForm() {
  *   const { control } = useForm();

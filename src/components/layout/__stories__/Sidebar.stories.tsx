@@ -9,7 +9,7 @@ import { Button } from "../../inputs/Button";
  *
  * ## Uso
  * ```tsx
- * import { Sidebar } from "@slft/ui-kit";
+ * import { Sidebar } from "@sltf/ui-kit";
  *
  * const [visible, setVisible] = useState(false);
  *

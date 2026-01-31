@@ -9,7 +9,7 @@ import { TextField } from "../TextField";
  * ## Uso
  * ```tsx
  * import { useForm } from "react-hook-form";
- * import { TextField } from "@slft/ui-kit";
+ * import { TextField } from "@sltf/ui-kit";
  *
  * function MyForm() {
  *   const { control } = useForm();

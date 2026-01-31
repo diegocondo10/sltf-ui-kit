@@ -8,7 +8,7 @@ import { DatePicker } from "../DatePicker";
  *
  * ## Uso
  * ```tsx
- * import { DatePicker } from "@slft/ui-kit";
+ * import { DatePicker } from "@sltf/ui-kit";
  *
  * <DatePicker
  *   value={date}

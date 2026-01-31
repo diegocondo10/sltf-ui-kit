@@ -8,7 +8,7 @@ import { NumberInput } from "../NumberInput";
  *
  * ## Uso
  * ```tsx
- * import { NumberInput } from "@slft/ui-kit";
+ * import { NumberInput } from "@sltf/ui-kit";
  *
  * // Currency
  * <NumberInput

@@ -7,7 +7,7 @@ import { InputText } from "../InputText";
  *
  * ## Uso
  * ```tsx
- * import { InputText } from "@slft/ui-kit";
+ * import { InputText } from "@sltf/ui-kit";
  *
  * <InputText
  *   placeholder="Enter text..."

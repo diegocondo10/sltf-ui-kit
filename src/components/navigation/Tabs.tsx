@@ -45,7 +45,7 @@ export interface TabsProps extends Omit<PrimeTabViewProps, "pt"> {
  *
  * @example
  * ```tsx
- * import { Tabs, TabPanel } from "@slft/ui-kit";
+ * import { Tabs, TabPanel } from "@sltf/ui-kit";
  *
  * <Tabs>
  *   <TabPanel header="Tab 1">

@@ -8,7 +8,7 @@ import { Checkbox } from "../Checkbox";
  *
  * ## Uso
  * ```tsx
- * import { Checkbox } from "@slft/ui-kit";
+ * import { Checkbox } from "@sltf/ui-kit";
  *
  * <Checkbox
  *   checked={isChecked}
