@@ -1,0 +1,17 @@
+name: Local Qwen Copilot
+version: 0.0.1
+schema: v1
+
+models:
+  - name: Qwen Autocomplete
+    provider: ollama
+    model: qwen2.5-coder:1.5b
+    roles:
+      - autocomplete
+
+  - name: Qwen Chat
+    provider: ollama
+    model: qwen2.5-coder:32b
+    roles:
+      - chat
+      - edit
